@@ -1,5 +1,4 @@
-@'
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
+echo "[HUSKY] pre-commit running..."
 npx lint-staged
-'@ | Set-Content .\.husky\pre-commit -NoNewline
