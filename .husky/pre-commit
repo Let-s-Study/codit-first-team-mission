@@ -1,4 +1,8 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
 echo "[HUSKY] pre-commit running..."
-npx lint-staged
+npx --no -- lint-staged
+rc=$?
+if [ $rc -ne 0 ]; then
+  echo "[HUSKY] lint-staged FAILED"
+  exit $rc
+fi
