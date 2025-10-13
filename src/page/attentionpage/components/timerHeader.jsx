@@ -7,10 +7,10 @@ function TimerHeader({}){
         <div className="wrapper">
             <div className="studyBox">
                 <p>{/*api로 스터디 이름 가져오기*/}</p>
-                <button type="button" className="habbitButton" onClick="location.href='링크'" >{/* 링크추가*/}
+                <button type="button" className="habbitButton" onClick="location.href='../habit'" >{/* 링크추가*/}
                 <p> 오늘의 습관 {'>'} </p>
                 </button>
-                <button type="button" className="homeButton" onClick="location.href='링크'"> {/* 링크추가*/} 
+                <button type="button" className="homeButton" onClick="location.href='../home'"> {/* 링크추가*/} 
                 <p> 홈 {'>'} </p>
                 </button>
             </div>
@@ -20,4 +20,4 @@ function TimerHeader({}){
             </div>
         </div>
     )
-}
+}   
