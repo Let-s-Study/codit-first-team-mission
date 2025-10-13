@@ -1,6 +1,9 @@
+
+
 import './App.scss'
 
 import logoImg from './assets/img/img_logo.png';
+import arrowRight from './assets/img/ic_arrow_right.png'
 
 function App() {
   const now = new Date();
@@ -15,8 +18,14 @@ function App() {
             <h1 className="title">{title}</h1>
           </div>
           <div className="menuContainer">
-            <button>오늘의 집중</button>
-            <button>홈</button>
+            <button>
+              오늘의 집중
+              <img src={arrowRight} className="arrowIcon"></img>
+            </button>
+            <button>
+              홈
+              <img src={arrowRight} className="arrowIcon"></img>
+            </button>
           </div>
         </div>
         <div className="timeContainer">
