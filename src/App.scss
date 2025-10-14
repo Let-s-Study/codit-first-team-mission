@@ -90,6 +90,8 @@
 }
 
 
+
+
 .listSection {
   margin-top: 20px;
   display: flex;
@@ -99,6 +101,22 @@
 
 }
 
+.Panel {
+  .panel {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    background-color: white;
+    border-radius: 1.25rem;
+
+    margin-top: 20px;
+    border: solid 1px #DDD;
+
+    padding: 2.5rem 10rem;
+
+  }
+}
 
 .listTitleSection {
   display: flex;
