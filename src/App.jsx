@@ -10,6 +10,7 @@ import arrowRight from './assets/img/ic_arrow_right.png'
 
 import { Panel } from './components/Panel/Panel'
 import { TodoItem } from './components/TodoItem/TodoItem'
+import { Header } from './components/Header/Header'
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
 
   return (
     <div className="mainContainer">
-      <Link to='/'><img src={logoImg} className="logoImg" /></Link>
+      <Header />
       <div className="appContainer">
         <div className="headerContainer">
           <div className="titleContainer">

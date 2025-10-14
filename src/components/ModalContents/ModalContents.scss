@@ -1,0 +1,14 @@
+button {
+  @include flexCenter;
+  cursor: pointer;
+  color: #fff;
+  font-family: $font-family-btn;
+  font-size: $font-size-base;
+  font-style: normal;
+  line-height: normal;
+  font-weight: 400;
+  border-radius: 1rem;
+  background: #99C08E;
+  border: none;
+  text-shadow: -0.5px -2px #578246;
+}

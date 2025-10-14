@@ -1,5 +1,12 @@
-* {
-  box-sizing: border-box;
+@use "./reset" as *;
+
+
+
+@font-face {
+  font-family: 'JejuStoneWall';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2');
+  font-weight: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -65,12 +72,73 @@
   font-display: swap;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+$color-bg: #F6F4EF;
+$color-border: #e5e5e5;
+$color-text: #414141;
+$color-subtext: #818181;
+$color-btn: #99C08E;
+
+$font-family-base: 'Pretendard', sans-serif;
+$font-family-btn: 'JejuStoneWall', sans-serif;
+
+$font-size-base: 1rem;
+$font-size-subtext: 0.875rem;
+$font-size-title: 1.5rem;
+$font-size-icon: 0.75rem;
+
+$breakpoint-mobile: 375px;
+$breakpoint-tablet: 744px;
+$breakpoint-desktop: 1200px;
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@mixin flexSort($justify, $alignItems) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $alignItems;
+}
+
+@mixin flexDirection {
+  display: flex;
+  flex-direction: $direction;
+}
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (max-width: #{$breakpoint-desktop}) {
+    @content;
+  }
+}
+
 body {
   font-family: san-serif, 'Pretendard';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #F6F4EF;
+  background-color: $color-bg;
   color: #333;
   margin: 0;
   padding: 20px;
 }
+
