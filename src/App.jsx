@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import './App.scss'
 
-import logoImg from './assets/img/img_logo.png';
 import arrowRight from './assets/img/ic_arrow_right.png'
 
 
@@ -36,25 +35,25 @@ function App() {
   }
 
   return (
-    <div className="mainContainer">
+    <div className="main_container">
       <Header />
-      <div className="appContainer">
-        <div className="headerContainer">
-          <div className="titleContainer">
+      <div className="app_container">
+        <div className="header_container">
+          <div className="title_container">
             <h1 className="title">{title}</h1>
           </div>
-          <div className="menuContainer">
+          <div className="menu_container">
             <button>
               오늘의 집중
-              <img src={arrowRight} className="arrowIcon"></img>
+              <img src={arrowRight} className="arrow_icon"></img>
             </button>
             <button>
               홈
-              <img src={arrowRight} className="arrowIcon"></img>
+              <img src={arrowRight} className="arrow_icon"></img>
             </button>
           </div>
         </div>
-        <div className="timeContainer">
+        <div className="time_container">
           <h3>현재 시간</h3>
           <p>{now.toLocaleString('ko-KR', {
             year: 'numeric',
@@ -66,9 +65,9 @@ function App() {
         </div>
 
 
-        <section className="listSection">
+        <section className="list_section">
           <Panel>
-            <div className="listTitleSection">
+            <div className="list_title_section">
               <h2>오늘의 습관</h2>
               <button onClick={() => setIsOpen(true)}>목록 수정</button>
 
@@ -77,7 +76,7 @@ function App() {
               <p>아직 습관이 없어요<br />목록 수정을 눌러 습관을 생성해보세요</p>
             ) : (
 
-              <ul className="todoList">
+              <ul className="todo_list">
                 {todos.map((todo) => (
                   <TodoItem
                     todo={todo}

@@ -14,7 +14,7 @@ export function TodoItem({ todo, onClick, showDelete = false, onDelete }) {
         <img
           src={trashImg}
           alt="삭제"
-          className="trashBtn"
+          className="trash_btn"
           onClick={(e) => {
             onDelete(todo.id)
           }} />

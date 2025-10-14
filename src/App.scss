@@ -1,9 +1,9 @@
-.mainContainer {
+.main_container {
   padding: 2rem 13.7rem;
   margin-left: 1rem;
 }
 
-.appContainer {
+.app_container {
   margin: 40px auto;
   background-color: #ffffff;
   border-radius: 1.25rem;
@@ -11,13 +11,7 @@
 
 }
 
-.logoImg {
-  width: 11.3rem;
-  height: 3.75rem;
-  cursor: pointer;
-}
-
-.headerContainer {
+.header_container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,7 +28,7 @@
   white-space: nowrap;
 }
 
-.timeContainer {
+.time_container {
   color: #868e96;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -54,7 +48,7 @@
   }
 }
 
-.menuContainer {
+.menu_container {
   display: flex;
   gap: 1rem;
 
@@ -81,7 +75,7 @@
 
 }
 
-.arrowIcon {
+.arrow_icon {
   width: 1.5rem;
   height: 1.5rem;
 
@@ -92,7 +86,7 @@
 
 
 
-.listSection {
+.list_section {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -118,7 +112,7 @@
   }
 }
 
-.listTitleSection {
+.list_title_section {
   display: flex;
   align-items: center;
   justify-content: center;
