@@ -8,9 +8,7 @@
   font-weight: 800;
   font-size: 1.5rem;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flexCenter;
   margin-bottom: 2rem;
 }
 
@@ -57,4 +55,17 @@
 
 .modalBtnWrapper {
   @include flexCenter;
+  gap: 5px;
+}
+
+.frameWrapper {
+  @include flexCenter;
+  margin-bottom: 10px;
+}
+
+.frameBtn {
+  width: 25rem;
+  height: 3.35rem;
+
+  cursor: pointer;
 }

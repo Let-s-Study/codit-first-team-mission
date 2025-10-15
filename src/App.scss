@@ -1,6 +1,14 @@
+@use './styles/main.scss' as *;
+
 .main_container {
   padding: 2rem 13.7rem;
   margin-left: 1rem;
+}
+
+@include mobile {
+  .main_container {
+    padding: 2rem 5rem;
+  }
 }
 
 .app_container {

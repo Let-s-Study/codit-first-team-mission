@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
 
 import './ModalContents.scss'
 import frameimg from '../../assets/img/img_frame.png'
@@ -15,6 +16,15 @@ function ModalContents({ todos, onSave, onClose }) {
 
   const handleDelete = (id) => {
     setEditTodos(prevTodos => prevTodos.filter(todo => todo.id !== id))
+  }
+
+  const handleAdd = (text) => {
+    const newTodo = {
+      id: nanoid(),
+      text: text,
+      isDone: false
+    };
+    setEditTodos(prevTodos => [...prevTodos, newTodo]);
   }
 
   const handleCancel = () => {
@@ -43,6 +53,9 @@ function ModalContents({ todos, onSave, onClose }) {
           ))}
         </ul>
       )}
+      <div className="frameWrapper">
+        <img src={frameimg} className="frameBtn" onClick={() => handleAdd('_____')} />
+      </div>
       <div className="modalBtnWrapper">
         <button className="cancelBtn" onClick={handleCancel}>취소</button>
         <button className="modifyBtn" onClick={handleSave}>수정 완료</button>
