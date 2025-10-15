@@ -4,7 +4,7 @@ import TimerHeader from "./components/timerHeader";
 import Timer from "./components/timer";
 import "./attentionpage.scss";
 
-function attentionpage() {
+function AttentionPage() {
   return (
     <div className="wrapper">
       <Header />
@@ -16,4 +16,4 @@ function attentionpage() {
   );
 }
 
-export default attentionpage;
+export default AttentionPage;
