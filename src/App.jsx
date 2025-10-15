@@ -11,6 +11,9 @@ import { Panel } from './components/Panel/Panel'
 import { TodoItem } from './components/TodoItem/TodoItem'
 import { Header } from './components/Header/Header'
 
+import Modal from './components/Modal/Modal'
+import ModalContents from './components/ModalContents/ModalContents'
+
 
 function App() {
   const now = new Date();
@@ -70,6 +73,12 @@ function App() {
             <div className="list_title_section">
               <h2>오늘의 습관</h2>
               <button onClick={() => setIsOpen(true)}>목록 수정</button>
+              <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+                <ModalContents
+                  todos={todos}
+                  onSave={setTodos}
+                  onClose={() => setIsOpen(false)} />
+              </Modal>
 
             </div>
             {todos.length === 0 ? (

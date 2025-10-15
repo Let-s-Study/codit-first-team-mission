@@ -1,14 +1,27 @@
-button {
-  @include flexCenter;
+.listSection>h2 {
+  font-weight: 800;
+  font-size: 1.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.listSection button {
   cursor: pointer;
   color: #fff;
-  font-family: $font-family-btn;
-  font-size: $font-size-base;
+  font-family: 'JejuStoneWall';
   font-style: normal;
   line-height: normal;
   font-weight: 400;
   border-radius: 1rem;
-  background: #99C08E;
+  background: #DDD;
   border: none;
   text-shadow: -0.5px -2px #578246;
+
+  width: 18rem;
+  height: 3.6rem;
+
+  font-size: 1.1rem;
 }
