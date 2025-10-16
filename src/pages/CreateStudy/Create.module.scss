@@ -1,0 +1,40 @@
+@use '@/styles/global.scss' as * ;
+
+.wrap {
+    @include flexCenter;
+}
+
+form {
+    border-radius: 1.25rem;
+    background: #FFF;
+    padding: 1.5rem 1.5rem 2.5rem 1.5rem;
+    @include flexDirection(column);
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+h1{
+    @include fonts($FStitle, $FStitle,$Ctext);
+}
+
+label{
+    @include fonts($FSsubtitle, $FWbase,$Ctext);
+}
+
+input{
+    width: 40.5rem;
+    height: 3rem;
+    border-radius: 0.9375rem;
+    border: 1px solid var(--gray-gray_DDDDDD, #DDD);
+    background: #FFF;
+    &:last-of-type{
+        margin-bottom: 2.5rem;
+    }
+}
+
+button{
+    width: 40.5rem;
+    height: 3.625rem;
+    align-self: center;
+    padding: 0.625rem;
+}
