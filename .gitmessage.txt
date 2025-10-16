@@ -1,8 +1,8 @@
 # 제목은 최대 50글자까지 아래에 작성: ex) Feat: Add Key mapping  
-Chore: testing new packages and commit convention
+Feat: CreateStudyPage 
 
 # 본문은 아래에 작성  
-커밋 컨벤선(깃모지) 테스트, 허스키 및 프리티어 테스트
+배경 이미지 선택 작업 초안 & 커밋 버그 수정
 
 # 꼬릿말은 아래에 작성: ex) Github issue #23  
 
