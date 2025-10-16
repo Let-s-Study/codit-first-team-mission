@@ -1,4 +1,5 @@
 import style from './Create.module.scss'
+import ImageImport from './ImageImport'
 
 export function CreateStudyPage(){
     return (
@@ -20,7 +21,7 @@ export function CreateStudyPage(){
             />
             
             <label htmlFor="background">배경을 선택해주세요</label>
-            {/* <ImageImport></ImageImport> */}
+            <ImageImport />
             <label htmlFor="password">비밀번호</label>
             <input 
                 type="text"

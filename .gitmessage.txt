@@ -1,8 +1,8 @@
 # 제목은 최대 50글자까지 아래에 작성: ex) Feat: Add Key mapping  
-Feat: Header, Global Scss and Router
+Feat: CreateStudyPage 
 
 # 본문은 아래에 작성  
-헤더 작업틀이랑 scss 작업 대략적인 라우터 작업 완료. 
+배경 이미지 선택 작업 초안
 
 # 꼬릿말은 아래에 작성: ex) Github issue #23  
 
