@@ -1,8 +1,8 @@
 # 제목은 최대 50글자까지 아래에 작성: ex) Feat: Add Key mapping  
-Feat: CreateStudyPage 
+fix: Habit Page Merging Conflict
 
 # 본문은 아래에 작성  
-배경 이미지 선택 작업 초안 & 커밋 버그 수정
+HabitPage 작업 완료, 페이지 머징 중 conflict 발생하여 해당 사항 수정
 
 # 꼬릿말은 아래에 작성: ex) Github issue #23  
 
