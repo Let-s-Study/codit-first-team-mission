@@ -2,7 +2,7 @@
 Feat: CreateStudyPage 
 
 # 본문은 아래에 작성  
-배경 이미지 선택 작업 초안
+배경 이미지 선택 작업 초안 & 커밋 버그 수정
 
 # 꼬릿말은 아래에 작성: ex) Github issue #23  
 
