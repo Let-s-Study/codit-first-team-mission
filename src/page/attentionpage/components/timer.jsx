@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import PauseIcon from "../../../assets/ic_pause.png";
-import PlayIcon from "../../../assets/ic_play.png";
-import RestartIcon from "../../../assets/ic_restart.png";
+import PauseIcon from "@/assets/btn_pause.png";
+import PlayIcon from "@/assets/ic_play.png";
+import RestartIcon from "@/assets/btn_restart.png";
 
 function Timer() {
   const [initialTime, setInitialTime] = useState(30 * 60);
@@ -9,6 +9,7 @@ function Timer() {
   const [isRunning, setIsRunning] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(String(initialTime / 60));
+  const [pauseToast, setPauseToast] = useState(false);
 
   useEffect(() => {
     let interval = null;
@@ -46,20 +47,25 @@ function Timer() {
     return `${minutes}:${viewedSeconds}`;
   };
   const handleInputBlur = () => {
+    // 영역에서 벗어나면 입력모드 취소
     setIsEditing(false);
     setEditValue(String(initialTime / 60));
   };
 
   const handleStart = () => {
+    // 타이머 시작
     setIsRunning(true);
+    setPauseToast(false);
   };
   const handlePause = () => {
     setIsRunning(false);
+    setPauseToast(true);
     // 타이머 정지
   };
   const handleReset = () => {
     setIsRunning(false);
     setSecondsLeft(initialTime);
+    setPauseToast(false);
     //타이머 초기화
   };
 
@@ -111,6 +117,16 @@ function Timer() {
             <div className="blank"></div>
           )}
         </div>
+      </div>
+      <div>
+        <p>
+          {pauseToast && (
+            <PauseToast
+              setPauseToast={setPauseToast}
+              text="🚨 집중이 중단되었습니다"
+            />
+          )}
+        </p>
       </div>
     </div>
   );

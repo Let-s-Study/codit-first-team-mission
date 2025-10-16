@@ -1,4 +1,4 @@
-import PointIcon from "../../../assets/ic_point.png";
+import PointIcon from "@/assets/ic_point.png";
 
 function TimerHeader() {
   return (
