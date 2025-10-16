@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-echo "[HUSKY] pre-commit running..."
-npx --no -- lint-staged
-rc=$?
-if [ $rc -ne 0 ]; then
-  echo "[HUSKY] lint-staged FAILED"
-  exit $rc
-fi
