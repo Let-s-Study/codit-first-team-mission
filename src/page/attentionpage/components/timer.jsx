@@ -19,7 +19,7 @@ function Timer() {
       }, 1000);
     }
     return () => clearInterval(interval);
-  });
+  }, [isRunning, secondsLeft]);
   const handleDisplayClick = () => {
     if (!isRunning) {
       setIsEditing(true);
@@ -29,7 +29,7 @@ function Timer() {
     setEditValue(e.target.value);
   };
   const handleInputKeyDown = (e) => {
-    if (e.key === "enter") {
+    if (e.key === "Enter") {
       const newMinutes = Number(editValue);
       if (!isNaN(newMinutes) && newMinutes > 0) {
         const newSeconds = newMinutes * 60;
@@ -118,15 +118,8 @@ function Timer() {
           )}
         </div>
       </div>
-      <div>
-        <p>
-          {pauseToast && (
-            <PauseToast
-              setPauseToast={setPauseToast}
-              text="🚨 집중이 중단되었습니다"
-            />
-          )}
-        </p>
+      <div className="toastMessage">
+        {pauseToast && <p>"🚨 집중이 중단되었습니다"</p>}
       </div>
     </div>
   );

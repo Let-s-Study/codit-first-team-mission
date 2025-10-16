@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./styles/global.scss";
 import { Layout } from "./components/layout/Layout";
-import { AttentionPage } from "./page/attentionpage/attentionpage";
+import AttentionPage from "./page/attentionpage/attentionpage";
 function App() {
   return (
     <Router>
