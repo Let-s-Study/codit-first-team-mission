@@ -1,10 +1,10 @@
 @use '../../styles/main.scss' as *;
 
-.listSection {
+.list_section {
   padding: 20px;
 }
 
-.listSection>h2 {
+.list_section>h2 {
   font-weight: 800;
   font-size: 1.5rem;
 
@@ -12,7 +12,7 @@
   margin-bottom: 2rem;
 }
 
-.cancelBtn {
+.cancel_btn {
   cursor: pointer;
   color: #fff;
   font-family: 'JejuStoneWall';
@@ -30,7 +30,7 @@
   font-size: 1.1rem;
 }
 
-.modifyBtn {
+.modify_btn {
   cursor: pointer;
   color: #fff;
   font-family: 'JejuStoneWall';
@@ -48,24 +48,50 @@
   font-size: 1.1rem;
 }
 
-.todoList {
+.underline_list {
   @include flexCenter;
   flex-direction: column;
+  text-decoration: underline #818181;
 }
 
-.modalBtnWrapper {
+
+
+.underline_list {
+  text-decoration: underline #818181;
+}
+
+
+
+.modal_btn_wrapper {
   @include flexCenter;
   gap: 5px;
 }
 
-.frameWrapper {
+.frame_btn_wrapper {
   @include flexCenter;
   margin-bottom: 10px;
 }
 
-.frameBtn {
+.frame_btn {
   width: 25rem;
   height: 3.35rem;
 
   cursor: pointer;
+}
+
+.input_btn {
+  border: 2px solid #578246;
+  outline: none;
+  @include flexCenter;
+  margin-bottom: 1rem;
+
+  background-color: #fff;
+  color: #818181;
+  width: 25rem;
+  height: 3.35rem;
+  border-radius: 1.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+
 }
