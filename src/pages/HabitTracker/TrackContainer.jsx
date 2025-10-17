@@ -1,0 +1,77 @@
+import { useEffect, useState } from "react";
+import { HabitTracker } from "./HabitTracker"; // 이전에 만든 기록표 컴포넌트
+
+export function TrackContainer() {
+    const [habits, setHabits] = useState([]);
+    const [records, setRecords] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchData() {
+        try {
+            // 실제 API 호출
+            const res = await fetch("/api/habits");
+            if (!res.ok) throw new Error("서버 응답 오류");
+            const data = await res.json();
+
+            setHabits(Array.isArray(data.habits) ? data.habits : []);
+            setRecords(data.records || {});
+        } catch (err) {
+            console.warn("⚠️ 서버 응답 실패 — mock 데이터로 대체합니다.");
+
+            const mockHabits = [
+            { id: "wake6", name: "미라클모닝 6시 기상" },
+            { id: "stretch", name: "스트레칭" },
+            { id: "water", name: "물 2L 마시기" },
+            { id: "d", name: "물 2Lasd 마시기" },
+            { id: "wddater", name: "물 2L asd마시기" },
+            { id: "watdder", name: "물 2L 마asd시기" },
+
+            ];
+            const mockRecords = {
+            wake6: [true, false, true, false, false, true, false],
+            stretch: [false, true, false, false, false, false, false],
+            water: [true, true, true, false, false, false, false],
+            d: [true, true, true, false, false, false, false],
+            wddater: [true, true, true, false, false, false, false]
+            };
+
+            setHabits(mockHabits);
+            setRecords(mockRecords);
+        } finally {
+            setIsLoading(false);
+        }
+        }
+
+        fetchData();
+    }, []);
+
+    const handleToggle = (habitId, dayIdx) => {
+        setRecords((prev) => {
+        const next = { ...prev };
+        const row = [...(next[habitId] || Array(7).fill(false))];
+        row[dayIdx] = !row[dayIdx];
+        next[habitId] = row;
+        return next;
+        });
+    };
+
+    if (isLoading) return <div>로딩 중...</div>;
+
+    if (!habits || habits.length === 0) {
+        return (
+        <div>
+            <p>아직 습관이 없어요</p>
+            <p>오늘의 습관에서 습관을 생성해보세요</p>
+        </div>
+        );
+    }
+    // 정상 렌더
+    return (
+        <HabitTracker
+        habits={habits}
+        records={records}
+        onToggle={handleToggle}
+        />
+    );
+    }

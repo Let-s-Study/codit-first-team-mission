@@ -73,9 +73,7 @@ export function CreateStudyPage(){
             <input
                 name="passwordCheck" value={values.passwordCheck} onChange={handleValue}
                 />
-                <Link to="detail" >
-                <button type="submit">만들기</button>
-                </Link>
+                <button type="submit" className={style.create}>만들기</button>
         </form>
         </div>
     );

@@ -74,7 +74,18 @@ $breakpoint-desktop: 1200px;
     color: $color;
     font-size: $size;
     font-weight: $weight;
+
 }
+
+@mixin designedBtn{
+    @include fonts ($FSbase, $FWsubtext ,$Cbtn);
+    color: #fff;
+    font-family: $FFbtn;
+    background: #99C08E;
+    border: none;
+    text-shadow: -0.5px -2px #578246 ;
+}
+
 body{
     background-color: $Cbg;
 }
@@ -86,16 +97,14 @@ a {
 button {
     @include flexCenter;
     cursor: pointer;
-    color: #fff;
-    font-family: $FFbtn;
-    font-size: $FSbase;
-    font-weight:$FFbase;
     border-radius: 1rem;
-    background: #99C08E;
-    border: none;
-    text-shadow: -0.5px -2px #578246 ;
 }
 
 img {
     max-width: 100%;
+}
+
+main {
+    display: flex;
+    justify-content: center;
 }

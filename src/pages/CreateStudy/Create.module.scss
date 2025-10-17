@@ -1,9 +1,9 @@
 @use '@/styles/global.scss' as * ;
 
+
 .wrap {
     @include flexCenter;
 }
-
 form {
     border-radius: 1.25rem;
     background: #FFF;
@@ -14,7 +14,7 @@ form {
 }
 
 h1{
-    @include fonts($FStitle, $FStitle,$Ctext);
+    @include fonts($FStitle, $FWtitle,$Ctext);
 }
 
 label{
@@ -32,7 +32,8 @@ input{
     }
 }
 
-button{
+.create{
+    @include designedBtn;
     width: 40.5rem;
     height: 3.625rem;
     align-self: center;
