@@ -1,0 +1,42 @@
+    /* 래퍼에 변수(모듈 스코프) */
+    .wrap {
+    --cols: 4;
+    --gap: 12px;
+    --border: #e6e6e6;
+    --focus: #111;
+    --badge-bg: rgba(255,255,255,.92);
+    }
+
+    .grid {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+    gap: var(--gap);
+    width: 648px;
+    height: 361px;
+    }
+
+    .tile {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+    background: transparent;
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .tile:hover { transform: scale(1.01); }
+
+    /* 정사각형 확보 */
+    .tile::before { content: ""; display: block; padding-bottom: 100%; }
+
+    /* 실제 배경 층 */
+    .bg {
+    position: absolute; inset: 0;
+    background-position: center; background-size: cover; background-repeat: no-repeat;
+    }
+
+    /* 모바일 */
+    @media (max-width: 640px) { .wrap { --cols: 3; } }
