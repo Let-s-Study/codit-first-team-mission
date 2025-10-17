@@ -1,8 +1,8 @@
 # 제목은 최대 50글자까지 아래에 작성: ex) Feat: Add Key mapping  
-Feat: CreateStudyPage 
+init: StudyDetailPage
 
-# 본문은 아래에 작성  
-배경 이미지 선택 작업 초안 & 커밋 버그 수정
+# 본문은 아래에 작성 
+초기 StudyDetailPage 세팅 작업
 
 # 꼬릿말은 아래에 작성: ex) Github issue #23  
 
