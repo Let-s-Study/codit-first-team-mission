@@ -1,3 +1,5 @@
+@use '../../styles/main.scss' as *;
+
 .overlay {
   z-index: var(--modal-z-index);
 
@@ -9,9 +11,7 @@
 
   background-color: rgba(0, 0, 0, 0.5);
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flexCenter;
 }
 
 .modal {

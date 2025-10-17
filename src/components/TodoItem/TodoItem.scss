@@ -1,7 +1,7 @@
+@use '../../styles/main.scss' as *;
+
 .todo-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flexCenter;
   margin-bottom: 1rem;
 
   background-color: #EEE;

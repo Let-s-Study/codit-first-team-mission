@@ -74,9 +74,7 @@
 
     cursor: pointer;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexCenter;
     gap: 2px;
     padding: 0 1rem;
   }
@@ -96,11 +94,8 @@
 
 .list_section {
   margin-top: 20px;
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
+  @include flexCenter;
 }
 
 .Panel {
@@ -121,9 +116,7 @@
 }
 
 .list_title_section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flexCenter;
   position: relative;
 
   h2 {
