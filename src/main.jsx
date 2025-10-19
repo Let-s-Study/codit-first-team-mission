@@ -2,11 +2,14 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/global.scss";
 import App from "./App.jsx";
-import AttentionPage from "./page/attentionpage/attentionpage.jsx";
+import FocusPage from "./page/focuspage/focuspage.jsx";
+import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    {/*<App />*/}
-    <AttentionPage />
+    <BrowserRouter>
+      {/*<App />*/}
+      <FocusPage />
+    </BrowserRouter>
   </StrictMode>
 );

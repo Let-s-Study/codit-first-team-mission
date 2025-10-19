@@ -1,13 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./styles/global.scss";
 import { Layout } from "./components/layout/Layout";
-import AttentionPage from "./page/attentionpage/attentionpage";
+import FocusPage from "./page/focuspage/focuspage";
 function App() {
   return (
     <Router>
       <Layout>
         <Routes>
-          <Route></Route>
+          <Route>
+            <FocusPage />
+          </Route>
         </Routes>
       </Layout>
     </Router>

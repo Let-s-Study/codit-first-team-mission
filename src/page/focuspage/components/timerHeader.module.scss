@@ -1,0 +1,74 @@
+@use "@/styles/global.scss" as *;
+* {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 80rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #fff;
+  gap: 1rem;
+}
+.studyBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px auto;
+  .studyTitle {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #414141;
+  }
+  .linkButtons {
+    display: flex;
+    gap: 1rem;
+    .linkButton {
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 3rem;
+      border-radius: 1rem;
+      border: 0.0625rem solid #818181;
+      color: #818181;
+      font-weight: 500;
+      &:hover {
+        background-color: #818181;
+      }
+    }
+  }
+}
+.pointSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  .gainPoint {
+    color: #818181;
+    font-weight: 400;
+    font-size: 1.125rem;
+  }
+  .pointBox {
+    @include flexCenter;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.125rem 0.5rem #0000001a;
+  }
+}
+
+@media (max-width: 48rem) {
+  .studyBox {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .pointSection {
+    align-items: flex-start;
+  }
+}
