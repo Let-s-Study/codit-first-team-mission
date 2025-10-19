@@ -1,5 +1,6 @@
-import { HabitTracker } from '../HabitTracker/HabitTracker';
-import { TrackContainer } from '../HabitTracker/TrackContainer'
+// import { HabitTracker } from '../HabitTracker/HabitTracker';
+import { SelectEmojis } from './SelectEmoji';
+import { TrackContainer } from '../HabitTracker/TrackContainer' 
 import style from './StudyDetailPage.module.scss';
 
 export function StudyDetailPage () {
@@ -7,7 +8,7 @@ export function StudyDetailPage () {
     <div className={style.wrap}>
         <header>
         <nav>
-            <div className={style.emojis}>이모지</div>
+            <SelectEmojis/>
             <div className={style.links}>
             <div>링크1 </div>
             <div>| 링크2</div>

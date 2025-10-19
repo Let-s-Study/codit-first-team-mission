@@ -43,5 +43,4 @@ export function BackgroundSelect(props){
         </div>
         </div>
     )
-    console.log(selectedId);
 }

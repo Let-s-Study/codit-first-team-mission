@@ -31,15 +31,15 @@
 }
 
 .toggle {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid #d1d5db;
-  background-color: #f1f5f9;
-  cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #d1d5db;
+    background-color: #f1f5f9;
+    cursor: pointer;
 }
 
 .toggle.is-active {
-  background-color: #d9f99d;
-  border-color: #d9f99d;
+    background-color: #d9f99d;
+    border-color: #d9f99d;
 }

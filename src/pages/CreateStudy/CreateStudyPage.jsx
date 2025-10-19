@@ -8,10 +8,10 @@ const ITEMS = [
     { id: "c2", type: "color", value: "#FFEFB3" },
     { id: "c3", type: "color", value: "#DDF1F7" },
     { id: "c4", type: "color", value: "#FBD1E2" },
-    { id: "i1", type: "img", value: "/img/desk1.jpg" },
-    { id: "i2", type: "img", value: "/img/desk2.jpg" },
-    { id: "i3", type: "img", value: "/img/tiles.jpg" },
-    { id: "i4", type: "img", value: "/img/leaf.jpg" },
+    { id: "i1", type: "img", value: "@/assets/samples/sample_img1.jpg" },
+    { id: "i2", type: "img", value: "@/assets/samples/sample_img2.jpg" },
+    { id: "i3", type: "img", value: "@/assets/samples/sample_img3.jpg" },
+    { id: "i4", type: "img", value: "@/assets/samples/sample_img4.jpg" },
     ];
 
 

@@ -2,7 +2,7 @@
 feat: StudyDetailPage
 
 # 본문은 아래에 작성 
-StudyDetailPage 테이블 작업 완료 및 목업 데이터 세팅 
+StudyDetailPage 기본 이모지피커 세팅 완료 및 최근 누른 이모지 세팅 완료
 
 # 꼬릿말은 아래에 작성: ex) Github issue #23  
 

@@ -21,7 +21,7 @@ label{
     @include fonts($FSsubtitle, $FWbase,$Ctext);
 }
 
-input{
+.wrap input{
     width: 40.5rem;
     height: 3rem;
     border-radius: 0.9375rem;

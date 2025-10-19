@@ -9,7 +9,6 @@ export function TrackContainer() {
     useEffect(() => {
         async function fetchData() {
         try {
-            // 실제 API 호출
             const res = await fetch("/api/habits");
             if (!res.ok) throw new Error("서버 응답 오류");
             const data = await res.json();
