@@ -41,10 +41,13 @@
 
 @include mobile {
   .todo-item {
-    width: 20rem;
+    width: 14rem;
   }
 
   .trash_btn {
-    transform: translateX(400%);
+    transform: translateX(430%);
+
+    width: 2rem;
+    height: 2rem;
   }
 }

@@ -91,8 +91,9 @@ $font-size-subtext: 0.875rem;
 $font-size-title: 1.5rem;
 $font-size-icon: 0.75rem;
 
-$breakpoint-mobile: 600px;
-$breakpoint-tablet: 744px;
+$breakpoint-mobile: 430px;
+$breakpoint-tablet-start: 375px;
+$breakpoint-tablet: 1024px;
 $breakpoint-desktop: 1200px;
 
 @mixin flexCenter {
@@ -120,7 +121,7 @@ $breakpoint-desktop: 1200px;
 }
 
 @mixin tablet {
-  @media (max-width: #{$breakpoint-tablet}) {
+  @media (min-width: #{$breakpoint-tablet-start}) and (max-width: #{$breakpoint-tablet}) {
     @content;
   }
 }

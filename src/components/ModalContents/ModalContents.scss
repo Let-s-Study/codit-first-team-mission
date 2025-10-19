@@ -78,6 +78,11 @@
 .frame_btn {
   width: 25rem;
   height: 3.35rem;
+  border-radius: 1.25rem;
+  font-weight: 700;
+  font-size: 20px;
+
+  background-color: #fff;
 
   cursor: pointer;
 }
@@ -102,7 +107,9 @@
 @include tablet {
   .list_section {
     padding: 2.5rem 4rem;
+
   }
+
 
   .modify_btn {
     width: 18rem;
@@ -115,16 +122,26 @@
   }
 
   .cancel_btn {
-    width: 6rem;
+    width: 4rem;
   }
 
   .modify_btn {
-    width: 14rem;
+    width: 10rem;
   }
 
   .frame_btn,
   .input_btn {
-    width: 20rem;
+    width: 14rem;
+    margin-right: 30px;
+  }
+
+  .underline_list {
+    align-items: start;
+    margin-right: 30px;
+  }
+
+  .modal_btn_wrapper {
+    margin-right: 30px;
   }
 
 }

@@ -177,12 +177,17 @@
 
 @include mobile {
   .main_container {
-    padding: 20px;
+    padding: 1px;
+    margin: 0;
+  }
+
+  .header_container {
+    align-items: start;
+
   }
 
   .title {
     font-size: 24px;
-    margin-right: 170px;
   }
 
   .header_container {
@@ -190,8 +195,6 @@
   }
 
   .menu_container {
-    padding: 8px 12px;
-    margin-right: 130px;
 
     button {
       font-size: 14px;
@@ -199,8 +202,12 @@
     }
   }
 
+  .time_container {
+    margin-bottom: 0;
+  }
+
   .app_container {
-    min-width: 10px;
+    padding: 2rem 1.5rem;
   }
 
   .list_section {

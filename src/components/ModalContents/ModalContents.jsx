@@ -94,7 +94,7 @@ function ModalContents({ todos, onSave, onClose }) {
         </ul>
       )}
       <div className="frame_btn_wrapper">
-        <img src={frameimg} className="frame_btn" onClick={() => handleAdd('')} />
+        <button src={frameimg} className="frame_btn" onClick={() => handleAdd('')}>+ </button>
       </div>
       <div className="modal_btn_wrapper">
         <button className="cancel_btn" onClick={handleCancel}>취소</button>
