@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import './styles/main.scss'
+import './styles/global.scss'
 import HabitPage from './pages/HabitPage/HabitPage'
 
 function App() {

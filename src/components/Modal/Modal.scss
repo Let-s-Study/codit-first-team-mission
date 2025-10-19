@@ -1,4 +1,4 @@
-@use '../../styles/main.scss' as *;
+@use '../../styles/global.scss' as *;
 
 .overlay {
   z-index: var(--modal-z-index);
@@ -20,4 +20,17 @@
   border-radius: 1.25rem;
 
   position: absolute;
+}
+
+
+@include tablet {
+  .modal {
+    width: 36rem;
+  }
+}
+
+@include mobile {
+  .modal {
+    width: 30rem;
+  }
 }

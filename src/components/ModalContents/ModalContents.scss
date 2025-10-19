@@ -1,4 +1,4 @@
-@use '../../styles/main.scss' as *;
+@use '../../styles/global.scss' as *;
 
 .list_section {
   padding: 20px;
@@ -24,10 +24,11 @@
   border: none;
   text-shadow: -0.5px -2px #818181;
 
-  width: 18rem;
+  width: 7rem;
   height: 3.6rem;
 
   font-size: 1.1rem;
+
 }
 
 .modify_btn {
@@ -42,7 +43,7 @@
   border: none;
   text-shadow: -0.5px -2px #578246;
 
-  width: 18rem;
+  width: 18.5rem;
   height: 3.6rem;
 
   font-size: 1.1rem;
@@ -58,12 +59,14 @@
 
 .underline_list {
   text-decoration: underline #818181;
+
 }
 
 
 
 .modal_btn_wrapper {
   @include flexCenter;
+  margin: 1rem 0;
   gap: 5px;
 }
 
@@ -93,5 +96,35 @@
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
+
+}
+
+@include tablet {
+  .list_section {
+    padding: 2.5rem 4rem;
+  }
+
+  .modify_btn {
+    width: 18rem;
+  }
+}
+
+@include mobile {
+  .list_section {
+    padding: 2.5rem 1rem;
+  }
+
+  .cancel_btn {
+    width: 6rem;
+  }
+
+  .modify_btn {
+    width: 14rem;
+  }
+
+  .frame_btn,
+  .input_btn {
+    width: 20rem;
+  }
 
 }

@@ -68,33 +68,35 @@ function HabitPage(onEdit) {
 
 
         <section className="list_section">
-          <Panel>
-            <div className="list_title_section">
-              <h2>오늘의 습관</h2>
-              <button onClick={() => setIsOpen(true)}>목록 수정</button>
-              <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-                <ModalContents
-                  todos={todos}
-                  onSave={setTodos}
-                  onClose={() => setIsOpen(false)} />
-              </Modal>
+          <div className="list_wrapper">
+            <Panel>
+              <div className="list_title_section">
+                <h2>오늘의 습관</h2>
+                <button onClick={() => setIsOpen(true)}>목록 수정</button>
+                <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+                  <ModalContents
+                    todos={todos}
+                    onSave={setTodos}
+                    onClose={() => setIsOpen(false)} />
+                </Modal>
 
-            </div>
-            {todos.length === 0 ? (
-              <p>아직 습관이 없어요<br />목록 수정을 눌러 습관을 생성해보세요</p>
-            ) : (
+              </div>
+              {todos.length === 0 ? (
+                <p>아직 습관이 없어요<br />목록 수정을 눌러 습관을 생성해보세요</p>
+              ) : (
 
-              <ul className="todo_list">
-                {todos.map((todo) => (
-                  <TodoItem
-                    todo={todo}
-                    onClick={toggleClick}
-                    onDelete={() => onDelete(todo.id)}
-                  />
-                ))}
-              </ul>
-            )}
-          </Panel>
+                <ul className="todo_list">
+                  {todos.map((todo) => (
+                    <TodoItem
+                      todo={todo}
+                      onClick={toggleClick}
+                      onDelete={() => onDelete(todo.id)}
+                    />
+                  ))}
+                </ul>
+              )}
+            </Panel>
+          </div>
         </section>
       </div>
     </div>

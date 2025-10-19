@@ -90,6 +90,7 @@ function ModalContents({ todos, onSave, onClose }) {
                 onDelete={() => handleDelete(todo.id)}
                 onDoubleClick={() => handleEditStart(todo)} />
             ))}
+
         </ul>
       )}
       <div className="frame_btn_wrapper">

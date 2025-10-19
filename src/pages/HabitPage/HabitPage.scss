@@ -1,21 +1,18 @@
-@use '../../styles/main.scss' as *;
+@use '../../styles/global.scss' as *;
 
 .main_container {
   padding: 2rem 13.7rem;
   margin-left: 1rem;
 }
 
-@include mobile {
-  .main_container {
-    padding: 2rem 5rem;
-  }
-}
 
 .app_container {
   margin: 40px auto;
   background-color: #ffffff;
   border-radius: 1.25rem;
   padding: 2.5rem;
+
+  min-width: 800px;
 
 }
 
@@ -118,10 +115,15 @@
 .list_title_section {
   @include flexCenter;
   position: relative;
+  flex-direction: column;
+
+  gap: 30px;
 
   h2 {
     font-weight: 800;
     font-size: 1.5rem;
+
+    white-space: nowrap;
   }
 
   button {
@@ -137,10 +139,71 @@
     cursor: pointer;
     border: none;
     background-color: transparent;
+
+    white-space: nowrap;
   }
 }
 
 
 .todo_list {
   text-decoration: none;
+  list-style: none;
+}
+
+
+.list_wrapper {
+  position: relative;
+}
+
+
+@include tablet {
+  .main_container {
+    padding: 30px;
+  }
+
+
+  .app_container {
+    min-width: 20px;
+  }
+
+  .list_section {
+    margin-top: 0;
+  }
+
+}
+
+
+
+
+@include mobile {
+  .main_container {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 24px;
+    margin-right: 170px;
+  }
+
+  .header_container {
+    flex-direction: column;
+  }
+
+  .menu_container {
+    padding: 8px 12px;
+    margin-right: 130px;
+
+    button {
+      font-size: 14px;
+      padding: 8px 12px;
+    }
+  }
+
+  .app_container {
+    min-width: 10px;
+  }
+
+  .list_section {
+    margin-top: 0;
+  }
 }

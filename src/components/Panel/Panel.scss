@@ -1,3 +1,5 @@
+@use '../../styles/global.scss' as *;
+
 .panel {
   display: flex;
   flex-direction: column;
@@ -11,4 +13,19 @@
 
   padding: 2.5rem 10rem;
 
+  position: relative;
+  width: 100%;
+}
+
+
+@include tablet {
+  .panel {
+    padding: 2.5rem 4rem;
+  }
+}
+
+@include mobile {
+  .panel {
+    padding: 2.5rem 1rem;
+  }
 }

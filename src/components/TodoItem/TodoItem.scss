@@ -1,4 +1,4 @@
-@use '../../styles/main.scss' as *;
+@use '../../styles/global.scss' as *;
 
 .todo-item {
   @include flexCenter;
@@ -32,4 +32,19 @@
 
   position: absolute;
   transform: translatex(500%);
+}
+
+.item_inner {
+  @include flexCenter;
+
+}
+
+@include mobile {
+  .todo-item {
+    width: 20rem;
+  }
+
+  .trash_btn {
+    transform: translateX(400%);
+  }
 }

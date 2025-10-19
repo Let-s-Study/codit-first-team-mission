@@ -2,7 +2,7 @@ import './TodoItem.scss';
 
 import trashImg from '../../assets/img/btn_determinate.png';
 
-export function TodoItem({ todo, onClick, onDoubleClick, showDelete = false, onDelete }) {
+export function TodoItem({ todo, onClick, showDelete = false, onDelete }) {
   const todoItem = "todo-item"
   const activeBackground = "active-background"
   return (
@@ -15,17 +15,19 @@ export function TodoItem({ todo, onClick, onDoubleClick, showDelete = false, onD
         if (onDoubleClick) onDoubleClick(todo);
       }}
     >
-      {todo.text}
-      {showDelete && (
-        <img
-          src={trashImg}
-          alt="삭제"
-          className="trash_btn"
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete(todo.id)
-          }} />
-      )}
+      <div className="item_inner">
+        {todo.text}
+        {showDelete && (
+          <img
+            src={trashImg}
+            alt="삭제"
+            className="trash_btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete(todo.id)
+            }} />
+        )}
+      </div>
     </li>
   )
 }
