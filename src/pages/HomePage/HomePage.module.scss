@@ -1,0 +1,55 @@
+@use "../../styles/global" as *;
+
+.homeWrap {
+  background-color: $Cbg;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  min-height: 100vh;
+
+  @include tablet {
+    padding: 2rem 1rem;
+    gap: 2rem;
+  }
+
+  @include mobile {
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+}
+
+.homeSection {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.06);
+  }
+
+  h2 {
+    @include fonts($FStitle, $FWbase, $Ctext);
+    margin-bottom: 1rem;
+
+    @include tablet {
+      @include fonts(1.1rem, $FWbase, $Ctext);
+      margin-bottom: 0.8rem;
+    }
+  }
+
+  @include tablet {
+    padding: 1.8rem;
+    border-radius: 16px;
+  }
+
+  @include mobile {
+    padding: 1.5rem;
+    border-radius: 14px;
+  }
+}
