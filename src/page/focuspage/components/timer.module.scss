@@ -109,7 +109,13 @@
   color: #578246;
   font-weight: 500;
 }
+.running {
+  color: #f50e0e;
+}
 
+.timeMinus {
+  color: #818181;
+}
 @media (max-width: 48rem) {
   .timeInput,
   .timeDisplay {

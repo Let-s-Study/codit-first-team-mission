@@ -3,7 +3,7 @@ import PauseIcon from "@/assets/btn_pause.png";
 import PlayIcon from "@/assets/ic_play.png";
 import StopIcon from "@/assets/ic_stop.png";
 import RestartIcon from "@/assets/btn_restart.png";
-import styles from "./timer.module.scss";
+import Style from "./timer.module.scss";
 
 function Timer() {
   const [initialTime, setInitialTime] = useState(30 * 60);
@@ -83,12 +83,12 @@ function Timer() {
 
   const isMinus = secondsLeft < 0;
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.focus}>
-        <p className={styles.timerTitle}>오늘의 집중</p>
+    <div className={Style.wrapper}>
+      <div className={Style.focus}>
+        <p className={Style.timerTitle}>오늘의 집중</p>
       </div>
-      <div className={styles.timer}>
-        <div className={styles.stopWatch}>
+      <div className={Style.timer}>
+        <div className={Style.stopWatch}>
           {isEditing ? (
             <input
               type="number"
@@ -97,40 +97,39 @@ function Timer() {
               onKeyDown={handleInputKeyDown}
               onBlur={handleInputBlur}
               autoFocus
-              className={styles.timeInput}
+              className={Style.timeInput}
             />
           ) : (
-            <div onClick={handleDisplayClick} className={styles.timeDisplay}>
+            <div
+              onClick={handleDisplayClick}
+              className={`${Style.timeDisplay} ${isRunning ? Style.running : ""} ${isMinus ? Style.timeMinus : ""}`}
+            >
               {viewedTime()}
             </div>
           )}
         </div>
-        <div className={styles.buttonWrapper}>
-          {isRunning ? ( // 정지시 버튼 안보이게
+        <div className={Style.buttonWrapper}>
+          {isRunning && !isMinus ? ( // 동작 안하거나 집중 완료시 버튼 안보이게
             <button
               type="button"
-              className={styles.pauseButton}
+              className={Style.pauseButton}
               onClick={handlePause}
             >
               <img src={PauseIcon} alt="일시정지" />
             </button>
           ) : (
-            <div className={styles.blank}></div>
+            <div className={Style.blank}></div>
           )}
 
           {isMinus ? ( // 시간 초과시
-            <button
-              type="button"
-              className={styles.button}
-              onClick={handleStop}
-            >
+            <button type="button" className={Style.button} onClick={handleStop}>
               <img src={StopIcon} alt="정지" />
               <p>Stop!</p>
             </button>
           ) : (
             <button
               type="button"
-              className={styles.button}
+              className={Style.button}
               onClick={handleStart}
               disabled={isRunning}
             >
@@ -139,26 +138,26 @@ function Timer() {
             </button>
           )}
 
-          {isRunning ? (
+          {isRunning && !isMinus ? (
             <button
               type="button"
-              className={styles.resetButton}
+              className={Style.resetButton}
               onClick={handleReset}
             >
               <img src={RestartIcon} alt="초기화" />
             </button>
           ) : (
-            <div className={styles.blank}></div>
+            <div className={Style.blank}></div>
           )}
         </div>
       </div>
       {pauseToast && (
-        <div className={styles.pauseMessage}>
+        <div className={Style.pauseMessage}>
           <p>🚨 집중이 중단되었습니다</p>
         </div>
       )}
       {finishToast && (
-        <div className={styles.finishMessage}>
+        <div className={Style.finishMessage}>
           <p>🎉 {calPoint} 포인트를 획득했습니다!</p>
         </div>
       )}
