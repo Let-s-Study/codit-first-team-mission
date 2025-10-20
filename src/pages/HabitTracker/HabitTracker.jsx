@@ -16,9 +16,9 @@ export function HabitTracker({ habits,records,onToggle }){
             <tbody>
             {habits.map((h) => (
                 <tr key={h.id}>
-                <th className={style.habit}>{h.name}</th>
+                <th className={style.habit}>{h.text}</th>
                 {days.map((_, dIdx) => {
-                    const active = records[h.id]?.[dIdx]; // true/false 여부
+                    const active = records[h.id]?.[dIdx]; 
                     return (
                     <td key={dIdx} className={style.cell}>
                         <button

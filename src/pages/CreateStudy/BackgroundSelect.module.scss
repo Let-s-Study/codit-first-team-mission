@@ -17,28 +17,17 @@
     .tile {
     position: relative;
     display: block;
-    width: 100%;
-    height: 100%;
+    height: 165px;
     border: 1px solid var(--border);
     overflow: hidden;
     cursor: pointer;
-    padding: 0;
-    background: transparent;
-    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    background-position: center;
+    background-size: cover; 
+    background-repeat: no-repeat;
     }
-
-    .tile:hover { transform: scale(1.01); }
-
-    .tile::before { 
-        content: ""; 
-        display: block; 
-        padding-bottom: 100%; }
-
-    .bg {
-        position: absolute; inset: 0;
-        background-position: center;
-        background-size: cover; 
-        background-repeat: no-repeat;
+    
+    .selectedBg {
+    position: absolute; 
     }
 
     @media (max-width: 640px) { .wrap { --cols: 3; } }

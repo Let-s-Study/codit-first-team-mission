@@ -2,16 +2,20 @@ import style from './Create.module.scss'
 import { BackgroundSelect } from './BackgroundSelect.jsx'
 import { useState } from 'react'
 
+import sampleImg1 from '@/assets/samples/sample_img.jpg'
+import sampleImg2 from '@/assets/samples/sample_img2.jpg'
+import sampleImg3 from '@/assets/samples/sample_img3.jpg'
+import sampleImg4 from '@/assets/samples/sample_img4.jpg'
 
 const ITEMS = [
     { id: "c1", type: "color", value: "#E3F0DF" },
     { id: "c2", type: "color", value: "#FFEFB3" },
     { id: "c3", type: "color", value: "#DDF1F7" },
     { id: "c4", type: "color", value: "#FBD1E2" },
-    { id: "i1", type: "img", value: "@/assets/samples/sample_img1.jpg" },
-    { id: "i2", type: "img", value: "@/assets/samples/sample_img2.jpg" },
-    { id: "i3", type: "img", value: "@/assets/samples/sample_img3.jpg" },
-    { id: "i4", type: "img", value: "@/assets/samples/sample_img4.jpg" },
+    { id: "i1", type: "img", value: sampleImg1 },
+    { id: "i2", type: "img", value: sampleImg2 },
+    { id: "i3", type: "img", value: sampleImg3 },
+    { id: "i4", type: "img", value: sampleImg4 },
     ];
 
 
@@ -19,6 +23,7 @@ export function CreateStudyPage(){
 
     const [values, setValues] = useState ({
         nickName: '',
+        title:'',
         description: '',
         backgroundId: '',
         password:'',
@@ -34,7 +39,10 @@ export function CreateStudyPage(){
     }
 
     const handleBgChange = (id) => {
-        setValues((prev) => ({...prev, bg: id }))};
+        setValues((prev) => ({...prev, backgroundId: id }));
+        console.log('changed', id);
+    
+    };
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -50,13 +58,20 @@ export function CreateStudyPage(){
                 name="nickName" 
                 value={values.nickName} 
                 onChange={handleValue}
+                placeholder='닉네임을 입력해 주세요'
             />
-
+            <input
+                name="title" 
+                value={values.title} 
+                onChange={handleValue}
+                placeholder='스터디 이름을 입력해 주세요'
+            />
             <label htmlFor="description">소개</label>
             <input
                 name="description" 
                 value={values.description} 
                 onChange={handleValue}
+                placeholder='소개 멘트를 작성해 주세요'
             />
 
             <label htmlFor="background">배경을 선택해주세요</label>
@@ -67,11 +82,17 @@ export function CreateStudyPage(){
             />
             <label htmlFor="password">비밀번호</label>
             <input 
-                name="password" value={values.password} onChange={handleValue}
+                name="password" 
+                value={values.password} 
+                onChange={handleValue}
+                placeholder='비밀번호를 입력해 주세요'
                 />
             <label htmlFor="passwordCheck">비밀번호</label>
             <input
-                name="passwordCheck" value={values.passwordCheck} onChange={handleValue}
+                name="passwordCheck" 
+                value={values.passwordCheck} 
+                onChange={handleValue}
+                placeholder='비밀번호를 다시 한 번 입력해 주세요'
                 />
                 <button type="submit" className={style.create}>만들기</button>
         </form>
