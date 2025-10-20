@@ -7,7 +7,6 @@ import arrowRight from '../../assets/img/ic_arrow_right.png'
 
 import { Panel } from '../../components/Panel/Panel'
 import { TodoItem } from '../../components/TodoItem/TodoItem'
-import { Header } from '../../components/Header/Header'
 
 import Modal from '../../components/Modal/Modal'
 import ModalContents from '../../components/ModalContents/ModalContents'
@@ -37,7 +36,6 @@ export function HabitPage({ onDelete }) {
 
   return (
     <div className={styles.mainContainer}>
-      <Header />
       <div className={styles.appContainer}>
         <div className={styles.headerContainer}>
           <div className={styles.titleContainer}>

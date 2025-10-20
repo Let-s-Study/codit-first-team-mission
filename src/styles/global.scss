@@ -3,8 +3,7 @@
 
 @font-face {
   font-family: "JejuStoneWall";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2")
-    format("woff2");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2") format("woff2");
   font-weight: normal;
   font-display: swap;
 }
@@ -80,6 +79,7 @@ $breakpoint-desktop: 1200px;
   font-size: $size;
   font-weight: $weight;
 }
+
 body {
   background-color: $Cbg;
 }
@@ -88,17 +88,11 @@ a {
   text-decoration: none;
 }
 
+
 button {
   @include flexCenter;
   cursor: pointer;
-  color: #fff;
-  font-family: $FFbtn;
-  font-size: $FSbase;
-  font-weight: $FFbase;
   border-radius: 1rem;
-  background: #99c08e;
-  border: none;
-  text-shadow: -0.5px -2px #578246;
 }
 
 img {
