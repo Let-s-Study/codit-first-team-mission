@@ -1,19 +1,19 @@
-// vite.config.js
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'node:path';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import './styles/global.scss'
+import { Layout } from './components/layout/Layout'
+import { CreateStudyPage } from './pages/CreateStudy/CreateStudyPage'
+import { HomePage } from './pages/HomePage/HomePage'
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="create" element={<CreateStudyPage />} />
+        </Route>
+      </Routes>
+    </Router>
+  )
+}
 
-export default defineConfig({
-  plugins: [react()],
-  resolve: { alias: { '@': path.resolve(__dirname, "src") } },
-  server: {
-    host: '127.0.0.1',      // 또는 true
-    port: 5173,
-    strictPort: true,
-    hmr: {
-      host: '127.0.0.1',
-      clientPort: 5173,
-      protocol: 'ws',       // 회사/프록시 환경에서 wss 차단 시 ws 강제
-    },
-  },
-});
+export default App

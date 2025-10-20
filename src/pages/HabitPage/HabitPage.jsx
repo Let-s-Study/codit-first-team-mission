@@ -13,7 +13,7 @@ import Modal from '../../components/Modal/Modal'
 import ModalContents from '../../components/ModalContents/ModalContents'
 
 
-export function HabitPage(onDelete) {
+export function HabitPage({ onDelete }) {
   const now = new Date();
   const title = "연우의 개발 공장";
 
