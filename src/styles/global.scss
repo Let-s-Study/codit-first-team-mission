@@ -69,7 +69,7 @@ $breakpoint-desktop: 1200px;
         @content;
     }
 }
- 
+
 @mixin fonts ($size, $weight, $color){
     color: $color;
     font-size: $size;
