@@ -10,9 +10,10 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
-            <Route path="habit" element={<HabitPage />}>
-          <Route path="create" element={<CreateStudyPage />} />
-          <Route path="focus" element={<FocusPage />} />
+          <Route path="habit" element={<HabitPage />}>
+            <Route path="create" element={<CreateStudyPage />} />
+            <Route path="focus" element={<FocusPage />} />
+          </Route>
         </Route>
       </Routes>
     </Router>
