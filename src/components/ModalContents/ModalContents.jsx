@@ -106,7 +106,7 @@ function ModalContents({ todos, onSave, onClose }) {
       </div>
       <div className={styles.pauseMeassageWrapper}>
         {pauseToast && (
-          <div className={styles.pauseMessage}><p>🚨 습관을 2자 이상으로 설정해주세요</p></div>
+          <div className={styles.pauseMessage}><p>🚨 습관을 3자 이상으로 설정해주세요</p></div>
         )}
       </div>
 
