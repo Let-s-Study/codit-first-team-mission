@@ -2,7 +2,7 @@ import React from "react";
 import leafIcon from "../../assets/leaf_logo.svg";
 import styles from "./StudyCard.module.scss";
 
-function StudyCard({
+export function StudyCard({
   id,
   title,
   days,
@@ -15,8 +15,15 @@ function StudyCard({
 }) {
   return (
     <div
-      className={styles.card}
-      style={{ backgroundColor: color }}
+      className={`${styles.card} ${
+        color === "green"
+          ? styles.green
+          : color === "yellow"
+            ? styles.yellow
+            : color === "blue"
+              ? styles.blue
+              : ""
+      }`}
       onClick={onClick}
     >
       <div className={styles.cardHeader}>
@@ -38,7 +45,7 @@ function StudyCard({
             onReactionClick(id, "study");
           }}
         >
-          👩‍💻 {reactions?.study}
+          👩‍💻 {reactions && reactions.study ? reactions.study : 0}
         </button>
         <button
           className={styles.reactionBtn}
@@ -47,7 +54,7 @@ function StudyCard({
             onReactionClick(id, "fire");
           }}
         >
-          🔥 {reactions?.fire}
+          🔥 {reactions && reactions.fire ? reactions.fire : 0}
         </button>
         <button
           className={styles.reactionBtn}
@@ -56,7 +63,7 @@ function StudyCard({
             onReactionClick(id, "heart");
           }}
         >
-          🤍 {reactions?.heart}
+          🤍 {reactions && reactions.heart ? reactions.heart : 0}
         </button>
       </div>
     </div>

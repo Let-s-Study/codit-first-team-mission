@@ -1,11 +1,11 @@
 import { useState } from "react";
 import StudyCard from "../StudyCard/StudyCard";
-import EmptyState from "../EmptyState/EmptyState";
-import CustomSelect from "./CustomSelect/CustomSelect";
+import { EmptyState } from "../EmptyState/EmptyState";
+import { CustomSelect } from "./CustomSelect/CustomSelect";
 import { CiSearch } from "react-icons/ci";
 import styles from "./StudyListSection.module.scss";
 
-function StudyListSection({ studies, onStudyClick, onReactionUpdate }) {
+export function StudyListSection({ studies, onStudyClick, onReactionUpdate }) {
   const [searchText, setSearchText] = useState("");
   const [sortType, setSortType] = useState("recent");
   const [visibleCount, setVisibleCount] = useState(6);
@@ -77,5 +77,3 @@ function StudyListSection({ studies, onStudyClick, onReactionUpdate }) {
     </section>
   );
 }
-
-export default StudyListSection;

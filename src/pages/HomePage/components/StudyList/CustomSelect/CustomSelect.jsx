@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import styles from "./CustomSelect.module.scss";
 
-function CustomSelect({ value, onChange }) {
+export function CustomSelect({ value, onChange }) {
   const [open, setOpen] = useState(false);
   const selectRef = useRef();
 
@@ -36,7 +36,9 @@ function CustomSelect({ value, onChange }) {
         onClick={() => setOpen((prev) => !prev)}
       >
         <span>
-          {options.find((opt) => opt.value === value)?.label || "정렬 선택"}
+          {options.find((opt) => opt.value === value)
+            ? options.find((opt) => opt.value === value).label
+            : "정렬 선택"}
         </span>
         <IoIosArrowDown
           className={`${styles.arrow} ${open ? styles.open : ""}`}
@@ -61,5 +63,3 @@ function CustomSelect({ value, onChange }) {
     </div>
   );
 }
-
-export default CustomSelect;

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import RecentStudySection from "./components/RecentStudy/RecentStudySection";
-import StudyListSection from "./components/StudyList/StudyListSection";
+import { RecentStudySection } from "./components/RecentStudy/RecentStudySection";
+import { StudyListSection } from "./components/StudyList/StudyListSection";
 import styles from "./HomePage.module.scss";
-import { studyList } from "./Api/studyData.js";
+import { studyList } from "./studyData.js";
 
 const RECENT_LIMIT = 3;
 

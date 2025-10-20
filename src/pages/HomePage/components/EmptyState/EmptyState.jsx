@@ -1,6 +1,6 @@
 import styles from "./EmptyState.module.scss";
 
-function EmptyState({ message }) {
+export function EmptyState({ message }) {
   return (
     <div className={styles.empty}>
       <p>{message}</p>
@@ -8,4 +8,4 @@ function EmptyState({ message }) {
   );
 }
 
-export default EmptyState;
+

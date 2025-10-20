@@ -1,9 +1,9 @@
 import React from "react";
-import EmptyState from "../EmptyState/EmptyState";
-import StudyCard from "../StudyCard/StudyCard";
+import { EmptyState } from "../EmptyState/EmptyState";
+import { StudyCard } from "../StudyCard/StudyCard";
 import styles from "./RecentStudySection.module.scss";
 
-function RecentStudySection({ studies = [] }) {
+export function RecentStudySection({ studies = [] }) {
   return (
     <section className={styles.recentStudy}>
       <h2>최근 조회한 스터디</h2>
@@ -19,5 +19,3 @@ function RecentStudySection({ studies = [] }) {
     </section>
   );
 }
-
-export default RecentStudySection;
