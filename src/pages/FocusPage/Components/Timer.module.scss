@@ -1,0 +1,106 @@
+@use "@/styles/global.scss" as *;
+
+.wrapper {
+  width: 100%;
+  max-width: 1280px;
+  @include flexDirection(column);
+  @include flexCenter;
+  gap: 1.5rem;
+  border-radius: 1rem;
+  border: 0.0625rem solid $Cborder;
+  padding: 2rem;
+}
+
+.timerTitle {
+  @include fonts($FStitle, $FWtitle, $Ctext);
+}
+
+.timer {
+  @include flexCenter;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  gap: 1.5rem;
+}
+
+.stopWatch {
+  .timeDisplay {
+    @include fonts(9.375rem, $FWtitle, $Ctext);
+  }
+}
+
+.timeInput {
+  width: 1200px;
+  @include fonts(9.375rem, $FWtitle, $Ctext);
+  height: auto;
+}
+
+.buttonWrapper {
+  @include flexCenter;
+  gap: 2rem;
+  max-width: 400rem;
+  justify-content: center;
+}
+
+.button {
+  @include flexCenter;
+  gap: 0.5rem;
+  max-width: 20rem;
+  padding: 1rem 0.5rem;
+  &:disabled {
+    background-color: #818181;
+    color: #fff;
+    cursor: not-allowed;
+  }
+}
+
+.pauseButton,
+.resetButton {
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  text-shadow: none;
+  cursor: pointer;
+}
+
+.pauseMessage {
+  @include flexCenter;
+  height: 2.9375rem;
+  width: 13.9375rem;
+  background-color: #fde0e9;
+  border-radius: 1rem;
+  color: #f50e0e;
+  font-weight: 500;
+}
+.finishMessage {
+  @include flexCenter;
+  height: 2.9375rem;
+  width: 13.9375rem;
+  background-color: #e1edde;
+  border-radius: 1rem;
+  color: #578246;
+  font-weight: 500;
+}
+.running {
+  color: #f50e0e;
+}
+
+.timeMinus {
+  color: #818181;
+}
+@mixin mobile {
+  .timeInput,
+  .timeDisplay {
+    font-size: 5rem;
+  }
+}
+
+@mixin tablet {
+  .timeInput,
+  .timeDisplay {
+    font-size: 7.5rem;
+  }
+}

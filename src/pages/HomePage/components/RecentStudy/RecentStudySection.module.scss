@@ -1,0 +1,21 @@
+.cardWrap {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(358px, 1fr));
+  gap: 1.5rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    gap: 1.2rem;
+  }
+
+  @media (max-width: 743px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.recentStudy {
+  @media (max-width: 768px) {
+    font-size: 0.75rem;
+  }
+}

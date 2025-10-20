@@ -1,14 +1,15 @@
 @font-face {
-    font-family: 'JejuStoneWall';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2');
-    font-weight: normal;
-    font-display: swap;
+  font-family: "JejuStoneWall";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-display: swap;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 $Cbg: #F6F4EF;
@@ -30,21 +31,26 @@ $FWsubtext: 400;
 $FWbase: 600;
 $FWtitle: 800;
 
-$breakpoint-mobile: 375px;
-$breakpoint-tablet: 744px;
+$FWsubtext: 400;
+$FWbase: 600;
+$FWtitle: 800;
+
+$breakpoint-mobile: 430px;
+$breakpoint-tablet-start: 375px;
+$breakpoint-tablet: 1024px;
 $breakpoint-desktop: 1200px;
 
 @mixin flexCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 @mixin flexSort($justify, $alignItems) {
-    display: flex;
-    justify-content: $justify;
-    align-items: $alignItems;
+  display: flex;
+  justify-content: $justify;
+  align-items: $alignItems;
 }
 
 @mixin flexDirection($direction) {
@@ -53,21 +59,21 @@ $breakpoint-desktop: 1200px;
 }
 
 @mixin mobile {
-    @media (max-width: #{$breakpoint-mobile}) {
-        @content;
-    }
+  @media (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
 }
 
 @mixin tablet {
-    @media (max-width: #{$breakpoint-tablet}) {
-        @content;
-    }
+  @media (max-width: #{$breakpoint-tablet}) {
+    @content;
+  }
 }
 
 @mixin desktop {
-    @media (max-width: #{$breakpoint-desktop}) {
-        @content;
-    }
+  @media (max-width: #{$breakpoint-desktop}) {
+    @content;
+  }
 }
  
 @mixin fonts ($size, $weight, $color){

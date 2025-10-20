@@ -1,8 +1,15 @@
 # 제목은 최대 50글자까지 아래에 작성: ex) Feat: Add Key mapping  
+<<<<<<< HEAD
 feat: StudyDetailPage
 
 # 본문은 아래에 작성 
 StudyDetailPage 기본 이모지피커 세팅 완료 및 최근 누른 이모지 세팅 완료
+=======
+fix: HomePage , HabitPage , CreateStudyPage 일부 머지 충돌 수정
+
+# 본문은 아래에 작성  
+git에 미숙한 아이들이 어쩌다가 보니 main을 dev에 풀 받는 일이 생겨버린.
+>>>>>>> f51a122e29be741475d4e38bac38ae96ae056f2b
 
 # 꼬릿말은 아래에 작성: ex) Github issue #23  
 
