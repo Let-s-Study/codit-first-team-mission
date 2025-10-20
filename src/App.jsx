@@ -8,11 +8,15 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HabitPage />}>
+        <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+            <Route path="habit" element={<HabitPage />}>
+          <Route path="create" element={<CreateStudyPage />} />
+          <Route path="focus" element={<FocusPage />} />
         </Route>
       </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
