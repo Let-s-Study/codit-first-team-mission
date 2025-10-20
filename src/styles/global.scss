@@ -52,7 +52,7 @@ $breakpoint-desktop: 1200px;
   align-items: $alignItems;
 }
 
-@mixin flexDirection {
+@mixin flexDirection($direction) {
   display: flex;
   flex-direction: $direction;
 }

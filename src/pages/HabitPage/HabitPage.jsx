@@ -13,7 +13,7 @@ import Modal from '../../components/Modal/Modal'
 import ModalContents from '../../components/ModalContents/ModalContents'
 
 
-function HabitPage(onEdit) {
+export function HabitPage(onEdit) {
   const now = new Date();
   const title = "연우의 개발 공장";
 
@@ -102,5 +102,3 @@ function HabitPage(onEdit) {
 
   )
 }
-
-export default HabitPage
