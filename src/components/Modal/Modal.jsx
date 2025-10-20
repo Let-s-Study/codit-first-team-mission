@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import './Modal.scss';
+import styles from './Modal.module.scss';
 
 function Modal({ children, isOpen, onClose }) {
   if (!isOpen) {
@@ -7,8 +7,8 @@ function Modal({ children, isOpen, onClose }) {
   }
 
   return createPortal(
-    <div className="overlay">
-      <div className="modal">
+    <div className={styles.overlay}>
+      <div className={styles.modal}>
         {children}
       </div>
     </div>,

@@ -8,88 +8,31 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Thin.woff') format('woff');
-  font-weight: 100;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraLight.woff') format('woff');
-  font-weight: 200;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
-  font-weight: 300;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
-  font-weight: 600;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
-  font-weight: 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
-  font-weight: 800;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Black.woff') format('woff');
-  font-weight: 900;
-  font-display: swap;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-$color-bg: #F6F4EF;
-$color-border: #e5e5e5;
-$color-text: #414141;
-$color-subtext: #818181;
-$color-btn: #99C08E;
 
-$font-family-base: 'Pretendard', sans-serif;
-$font-family-btn: 'JejuStoneWall', sans-serif;
+$Cbg: #F6F4EF;
+$Cborder: #e5e5e5;
+$Ctext: #414141;
+$Csubtext: #818181;
+$Cbtn: #99C08E;
 
-$font-size-base: 1rem;
-$font-size-subtext: 0.875rem;
-$font-size-title: 1.5rem;
-$font-size-icon: 0.75rem;
+$FFbase: 'Pretendard', sans-serif;
+$FFbtn: 'JejuStoneWall', sans-serif;
+
+$FSbase: 1rem;
+$FSsubtext: 0.875rem;
+$FSsubtitle: 1.125rem;
+$FStitle: 1.5rem;
+$FSicon: 0.75rem;
+
+$FWsubtext: 400;
+$FWbase: 600;
+$FWtitle: 800;
 
 $breakpoint-mobile: 430px;
 $breakpoint-tablet-start: 375px;
@@ -132,12 +75,21 @@ $breakpoint-desktop: 1200px;
   }
 }
 
+@mixin fonts ($size, $weight, $color) {
+  color: $color;
+  font-size: $size;
+  font-weight: $weight;
+}
+
 body {
-  font-family: san-serif, 'Pretendard';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: $color-bg;
-  color: #333;
-  margin: 0;
-  padding: 20px;
+  background-color: $Cbg;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+img {
+  max-width: 100%;
 }

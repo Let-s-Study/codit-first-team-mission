@@ -1,22 +1,19 @@
-@use '../../styles/global.scss' as *;
+@use '@/styles/global.scss' as *;
 
-.main_container {
+.mainContainer {
   padding: 2rem 13.7rem;
   margin-left: 1rem;
 }
 
-
-.app_container {
+.appContainer {
   margin: 40px auto;
   background-color: #ffffff;
   border-radius: 1.25rem;
   padding: 2.5rem;
-
   min-width: 800px;
-
 }
 
-.header_container {
+.headerContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,11 +26,10 @@
   margin-bottom: 20px;
   font-size: 2rem;
   font-weight: 800;
-
   white-space: nowrap;
 }
 
-.time_container {
+.timeContainer {
   color: #868e96;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -48,19 +44,17 @@
     background-color: #fff;
     padding: 10px;
     white-space: nowrap;
-
     color: #000;
   }
 }
 
-.menu_container {
+.menuContainer {
   display: flex;
   gap: 1rem;
-
   white-space: nowrap;
 
-
   button {
+    @include flexCenter;
     border: 1px solid #ddd;
     background-color: #fff;
     border-radius: 1rem;
@@ -68,61 +62,35 @@
     font-size: 1rem;
     font-weight: 500;
     color: #818181;
-
     cursor: pointer;
-
-    @include flexCenter;
     gap: 2px;
     padding: 0 1rem;
   }
-
 }
 
-.arrow_icon {
+.arrowIcon {
   width: 1.5rem;
   height: 1.5rem;
-
   margin-bottom: 2px;
   margin-left: 1px;
 }
 
-
-
-
-.list_section {
+.listSection {
+  @include flexCenter;
   margin-top: 20px;
   flex-direction: column;
-  @include flexCenter;
 }
 
-.Panel {
-  .panel {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
 
-    background-color: white;
-    border-radius: 1.25rem;
-
-    margin-top: 20px;
-    border: solid 1px #DDD;
-
-    padding: 2.5rem 10rem;
-
-  }
-}
-
-.list_title_section {
+.listTitleSection {
   @include flexCenter;
   position: relative;
   flex-direction: column;
-
   gap: 30px;
 
   h2 {
     font-weight: 800;
     font-size: 1.5rem;
-
     white-space: nowrap;
   }
 
@@ -135,82 +103,71 @@
     color: #878787;
     font-size: 0.9rem;
     text-decoration: none;
-
     cursor: pointer;
     border: none;
     background-color: transparent;
-
     white-space: nowrap;
   }
 }
 
-
-.todo_list {
+.todoList {
   text-decoration: none;
   list-style: none;
 }
 
-
-.list_wrapper {
+.listWrapper {
   position: relative;
 }
 
 
 @include tablet {
-  .main_container {
+  .mainContainer {
     padding: 30px;
   }
 
-
-  .app_container {
+  .appContainer {
     min-width: 20px;
   }
 
-  .list_section {
+  .listSection {
     margin-top: 0;
   }
-
 }
 
-
-
-
 @include mobile {
-  .main_container {
+  .mainContainer {
     padding: 1px;
     margin: 0;
   }
 
-  .header_container {
+  .headerContainer {
     align-items: start;
-
   }
 
   .title {
     font-size: 24px;
   }
 
-  .header_container {
+  .headerContainer {
     flex-direction: column;
   }
 
-  .menu_container {
-
+  .menuContainer {
     button {
       font-size: 14px;
       padding: 8px 12px;
     }
   }
 
-  .time_container {
+  .timeContainer {
     margin-bottom: 0;
   }
 
-  .app_container {
+  .appContainer {
     padding: 2rem 1.5rem;
   }
 
-  .list_section {
+  .listSection {
     margin-top: 0;
   }
 }

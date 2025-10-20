@@ -1,4 +1,4 @@
-@use '../../styles/global.scss' as *;
+@use '@/styles/global.scss' as *;
 
 .overlay {
   z-index: var(--modal-z-index);

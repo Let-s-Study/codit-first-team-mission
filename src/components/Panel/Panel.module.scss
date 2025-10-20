@@ -1,19 +1,15 @@
-@use '../../styles/global.scss' as *;
+@use '@/styles/global.scss' as *;
 
 .panel {
   display: flex;
   flex-direction: column;
+  position: relative;
   gap: 2rem;
-
   background-color: white;
   border-radius: 1.25rem;
-
   margin-top: 20px;
   border: solid 1px #DDD;
-
   padding: 2.5rem 10rem;
-
-  position: relative;
   width: 100%;
 }
 
