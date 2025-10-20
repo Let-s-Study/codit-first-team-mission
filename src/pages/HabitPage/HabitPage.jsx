@@ -2,9 +2,8 @@ import { React, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { Link } from 'react-router-dom';
 
-import './HabitPage.scss'
+import styles from './HabitPage.module.scss'
 import arrowRight from '../../assets/img/ic_arrow_right.png'
-
 
 import { Panel } from '../../components/Panel/Panel'
 import { TodoItem } from '../../components/TodoItem/TodoItem'
@@ -14,7 +13,7 @@ import Modal from '../../components/Modal/Modal'
 import ModalContents from '../../components/ModalContents/ModalContents'
 
 
-function HabitPage(onEdit) {
+export function HabitPage(onEdit) {
   const now = new Date();
   const title = "연우의 개발 공장";
 
@@ -37,25 +36,25 @@ function HabitPage(onEdit) {
   }
 
   return (
-    <div className="main_container">
+    <div className={styles.mainContainer}>
       <Header />
-      <div className="app_container">
-        <div className="header_container">
-          <div className="title_container">
-            <h1 className="title">{title}</h1>
+      <div className={styles.appContainer}>
+        <div className={styles.headerContainer}>
+          <div className={styles.titleContainer}>
+            <h1 className={styles.title}>{title}</h1>
           </div>
-          <div className="menu_container">
+          <div className={styles.menuContainer}>
             <button>
               오늘의 집중
-              <img src={arrowRight} className="arrow_icon"></img>
+              <img src={arrowRight} className={styles.arrowIcon}></img>
             </button>
             <button>
               홈
-              <img src={arrowRight} className="arrow_icon"></img>
+              <img src={arrowRight} className={styles.arrowIcon}></img>
             </button>
           </div>
         </div>
-        <div className="time_container">
+        <div className={styles.timeContainer}>
           <h3>현재 시간</h3>
           <p>{now.toLocaleString('ko-KR', {
             year: 'numeric',
@@ -67,39 +66,39 @@ function HabitPage(onEdit) {
         </div>
 
 
-        <section className="list_section">
-          <Panel>
-            <div className="list_title_section">
-              <h2>오늘의 습관</h2>
-              <button onClick={() => setIsOpen(true)}>목록 수정</button>
-              <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-                <ModalContents
-                  todos={todos}
-                  onSave={setTodos}
-                  onClose={() => setIsOpen(false)} />
-              </Modal>
+        <section className={styles.listSection}>
+          <div className={styles.listWrapper}>
+            <Panel>
+              <div className={styles.listTitleSection}>
+                <h2>오늘의 습관</h2>
+                <button onClick={() => setIsOpen(true)}>목록 수정</button>
+                <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+                  <ModalContents
+                    todos={todos}
+                    onSave={setTodos}
+                    onClose={() => setIsOpen(false)} />
+                </Modal>
 
-            </div>
-            {todos.length === 0 ? (
-              <p>아직 습관이 없어요<br />목록 수정을 눌러 습관을 생성해보세요</p>
-            ) : (
+              </div>
+              {todos.length === 0 ? (
+                <p>아직 습관이 없어요<br />목록 수정을 눌러 습관을 생성해보세요</p>
+              ) : (
 
-              <ul className="todo_list">
-                {todos.map((todo) => (
-                  <TodoItem
-                    todo={todo}
-                    onClick={toggleClick}
-                    onDelete={() => onDelete(todo.id)}
-                  />
-                ))}
-              </ul>
-            )}
-          </Panel>
+                <ul className={styles.todoList}>
+                  {todos.map((todo) => (
+                    <TodoItem
+                      todo={todo}
+                      onClick={toggleClick}
+                      onDelete={() => onDelete(todo.id)}
+                    />
+                  ))}
+                </ul>
+              )}
+            </Panel>
+          </div>
         </section>
       </div>
     </div>
 
   )
 }
-
-export default HabitPage
