@@ -1,5 +1,5 @@
 import style from './Create.module.scss'
-import {ImageImport} from './ImageImport'
+import ImageImport from './ImageImport'
 
 export function CreateStudyPage(){
     return (

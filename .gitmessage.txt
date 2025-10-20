@@ -1,8 +1,8 @@
 # 제목은 최대 50글자까지 아래에 작성: ex) Feat: Add Key mapping  
-fix: CreateStudyPage 
+fix: HomePage , HabitPage , CreateStudyPage 일부 머지 충돌 수정
 
 # 본문은 아래에 작성  
-헤더 오류 수정 및 머지 오류 수정
+git에 미숙한 아이들이 어쩌다가 보니 main을 dev에 풀 받는 일이 생겨버린.
 
 # 꼬릿말은 아래에 작성: ex) Github issue #23  
 
