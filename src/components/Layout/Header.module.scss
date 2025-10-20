@@ -1,0 +1,12 @@
+@use '@/styles/global.scss' as *;
+
+nav{
+    @include flexSort(space-between, center);
+    padding: 1.3rem 13rem;
+}
+
+.create{
+    width: 15.75rem;
+    height: 3.625rem;
+    padding: 0.625rem;
+}

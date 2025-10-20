@@ -1,6 +1,3 @@
-@use "./reset" as *;
-
-
 @font-face {
   font-family: "JejuStoneWall";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2")
@@ -34,9 +31,8 @@ $FWsubtext: 400;
 $FWbase: 600;
 $FWtitle: 800;
 
-$breakpoint-mobile: 430px;
-$breakpoint-tablet-start: 375px;
-$breakpoint-tablet: 1024px;
+$breakpoint-mobile: 375px;
+$breakpoint-tablet: 744px;
 $breakpoint-desktop: 1200px;
 
 @mixin flexCenter {

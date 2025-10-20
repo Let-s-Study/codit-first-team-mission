@@ -1,5 +1,3 @@
-@use '@/styles/global.scss' as *;
-
 .overlay {
   z-index: var(--modal-z-index);
 
@@ -11,7 +9,9 @@
 
   background-color: rgba(0, 0, 0, 0.5);
 
-  @include flexCenter;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal {
@@ -20,18 +20,4 @@
   border-radius: 1.25rem;
 
   position: absolute;
-}
-
-
-@include tablet {
-  .modal {
-    width: 36rem;
-  }
-}
-
-@include mobile {
-  .modal {
-    width: 20rem;
-    height: 47rem;
-  }
 }

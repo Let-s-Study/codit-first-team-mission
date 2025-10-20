@@ -1,5 +1,5 @@
-import styles from './Panel.module.scss'
+import './Panel.scss'
 
 export function Panel({ children }) {
-  return <section className={styles.panel}>{children}</section>
+  return <section className="panel">{children}</section>
 }
