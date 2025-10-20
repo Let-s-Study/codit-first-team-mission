@@ -1,0 +1,78 @@
+@use "@/styles/global.scss" as *;
+
+.customSelect {
+  position: relative;
+  width: 160px;
+  font-family: $FFbase;
+  font-size: $FSbase;
+}
+
+.selectBtn {
+  @include flexSort(space-between, center);
+  width: 100%;
+  height: 40px;
+  padding: 0 1rem;
+  border: 1px solid $Cborder;
+  border-radius: 10px;
+  background-color: #fff;
+  color: $Ctext;
+  font-family: $FFbase;
+  text-shadow: none;
+
+  cursor: pointer;
+
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: $Cbtn;
+  }
+
+  .arrow {
+    font-size: 1rem;
+    color: $Ctext;
+    transition: transform 0.3s ease;
+  }
+
+  .open {
+    transform: rotate(180deg);
+  }
+}
+
+.optionList {
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid $Cborder;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  z-index: 20;
+}
+
+.option {
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  color: $Ctext;
+  font-size: $FSsubtext;
+  transition: background 0.15s ease;
+
+  &.active {
+    background-color: $Cbtn;
+    color: #fff;
+    font-weight: $FWbase;
+  }
+
+  &:first-child {
+    border-radius: 10px 10px 0 0;
+  }
+
+  &:last-child {
+    border-radius: 0 0 10px 10px;
+  }
+
+  & + .option {
+    border-top: 1px solid $Cborder;
+  }
+}

@@ -3,6 +3,7 @@ import './styles/global.scss'
 import { Layout } from './components/layout/Layout'
 import { CreateStudyPage } from './pages/CreateStudy/CreateStudyPage'
 import { HomePage } from './pages/HomePage/HomePage'
+
 function App() {
   return (
     <Router>
