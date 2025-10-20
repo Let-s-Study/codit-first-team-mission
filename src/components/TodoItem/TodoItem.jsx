@@ -8,9 +8,6 @@ export function TodoItem({ todo, onClick, showDelete = false, onDelete }) {
       onClick={() => {
         if (onClick) onClick(todo.id);
       }}
-      onDoubleClick={() => {
-        if (onDoubleClick) onDoubleClick(todo);
-      }}
     >
       <div className={styles.itemInner}>
         {todo.text}

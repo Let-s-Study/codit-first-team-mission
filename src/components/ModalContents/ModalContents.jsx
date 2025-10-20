@@ -88,7 +88,7 @@ function ModalContents({ todos, onSave, onClose }) {
                 todo={todo}
                 showDelete={true}
                 onDelete={() => handleDelete(todo.id)}
-                onDoubleClick={() => handleEditStart(todo)} />
+                onClick={() => handleEditStart(todo)} />
             ))}
 
         </ul>
