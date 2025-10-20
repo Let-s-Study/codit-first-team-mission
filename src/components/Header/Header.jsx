@@ -4,7 +4,7 @@ import styles from './Header.module.scss'
 export function Header({ actions = null }) {
   return (
     <nav>
-      <div className="logo_space">
+      <div className={styles.logoSpace}>
         <img src={logo} alt="Let's_study_logo" />
       </div>
       {actions}
