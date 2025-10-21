@@ -8,6 +8,7 @@ import { TodoItem } from '../TodoItem/TodoItem';
 function ModalContents({ todos, onSave, onClose }) {
 
   const [editTodos, setEditTodos] = useState(todos);
+  const [pauseToast, setPauseToast] = useState(false);
 
   useEffect(() => {
     setEditTodos(todos)
@@ -50,6 +51,10 @@ function ModalContents({ todos, onSave, onClose }) {
   }
 
   const handleEditSave = () => {
+    if (editValue.trim().length < 3) {
+      setPauseToast(true);
+      return;
+    }
     setEditTodos((prevTodos) =>
       prevTodos.map((t) =>
         t.id === editId ? { ...t, text: editValue } : t)
@@ -66,7 +71,6 @@ function ModalContents({ todos, onSave, onClose }) {
   return (
     <div className={styles.listSection}>
       <h2>습관 목록</h2>
-
       {editTodos.length === 0 ? (
         <p>아직 습관이 없어요<br />목록 수정을 눌러 습관을 생성해보세요</p>
       ) : (
@@ -100,6 +104,12 @@ function ModalContents({ todos, onSave, onClose }) {
         <button className={styles.cancelBtn} onClick={handleCancel}>취소</button>
         <button className={styles.modifyBtn} onClick={handleSave}>수정 완료</button>
       </div>
+      <div className={styles.pauseMeassageWrapper}>
+        {pauseToast && (
+          <div className={styles.pauseMessage}><p>🚨 습관을 3자 이상으로 설정해주세요</p></div>
+        )}
+      </div>
+
     </div>
   )
 }

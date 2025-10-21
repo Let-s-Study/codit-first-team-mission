@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './styles/global.scss'
 import { Layout } from './components/layout/Layout'
-import { CreateStudyPage } from './pages/CreateStudy/CreateStudyPage'
 import { HomePage } from './pages/HomePage/HomePage'
 import { HabitPage } from './pages/HabitPage/HabitPage'
 import { FocusPage } from './pages/FocusPage/FocusPage'
@@ -19,7 +18,7 @@ function App() {
         </Route>
       </Routes>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

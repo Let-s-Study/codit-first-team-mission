@@ -95,6 +95,21 @@
   cursor: pointer;
 }
 
+.pauseMessage {
+  @include flexCenter;
+  height: 2.9375rem;
+  width: 17rem;
+  background-color: #fde0e9;
+  border-radius: 1rem;
+  color: #f50e0e;
+  font-weight: 500;
+}
+
+.pauseMeassageWrapper {
+  @include flexCenter;
+  margin-top: 2rem;
+}
+
 @include tablet {
   .listSection {
     padding: 2.5rem 4rem;
@@ -126,12 +141,15 @@
   }
 
   .underlineList {
-    align-items: start;
     margin-right: 30px;
   }
 
   .modalBtnWrapper {
     margin-right: 30px;
+  }
+
+  .pauseMeassageWrapper {
+    margin-top: 4rem;
   }
 
 }
