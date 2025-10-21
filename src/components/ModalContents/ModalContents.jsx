@@ -19,10 +19,7 @@ function ModalContents({ todos, onSave, onClose }) {
   }
 
   const handleAdd = (text) => {
-    if (editValue.trim().length < 3) {
-      setPauseToast(true);
-      return;
-    }
+
     const newTodo = {
       id: nanoid(),
       text: text,
@@ -110,7 +107,7 @@ function ModalContents({ todos, onSave, onClose }) {
         </ul>
       )}
       <div className={styles.frameBtnWrapper}>
-        <button src={frameimg} className={styles.frameBtn} onClick={() => handleAdd('')}>+ </button>
+        <button src={frameimg} className={styles.frameBtn} onClick={() => handleAdd('새 습관')}>+</button>
       </div>
       <div className={styles.modalBtnWrapper}>
         <button className={styles.cancelBtn} onClick={handleCancel}>취소</button>

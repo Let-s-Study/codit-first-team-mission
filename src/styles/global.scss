@@ -88,6 +88,27 @@ a {
   text-decoration: none;
 }
 
+@mixin designedBtn {
+  @include fonts ($FSbase, $FWsubtext , $Cbtn);
+  color: #fff;
+  font-family: $FFbtn;
+  background: #99C08E;
+  border: none;
+  text-shadow: -0.5px -2px #578246;
+
+  @include tablet {
+    & {
+      font-size: $FSsubtitle;
+    }
+  }
+
+  @include mobile {
+    & {
+      font-size: 0.625rem;
+    }
+  }
+}
+
 
 button {
   @include flexCenter;
