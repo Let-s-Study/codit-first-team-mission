@@ -1,24 +1,34 @@
 @use '@/styles/global.scss' as *;
 
 nav {
-  display: flex;
-  padding: 2rem 13.7rem;
-  margin-left: 1rem;
+  @include flexSort(space-between, center);
+  padding: 1.5rem 1.25rem;
 }
 
-.logoSpace {
-  display: flex;
-  padding: 2rem 13.7rem;
+
+.create {
+  @include designedBtn;
+  width: 15.75rem;
+  height: 3.625rem;
+  padding: 0.625rem;
 }
 
 @include tablet {
   .logoSpace {
     padding: 2rem 5rem;
   }
+
+  .create {
+    width: 10rem;
+  }
 }
 
 @include mobile {
   .logoSpace {
     padding: 1rem 2rem;
+  }
+
+  .create {
+    width: 6.25rem;
   }
 }
