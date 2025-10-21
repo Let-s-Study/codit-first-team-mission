@@ -19,6 +19,10 @@ function ModalContents({ todos, onSave, onClose }) {
   }
 
   const handleAdd = (text) => {
+    if (editValue.trim().length < 3) {
+      setPauseToast(true);
+      return;
+    }
     const newTodo = {
       id: nanoid(),
       text: text,
@@ -32,6 +36,9 @@ function ModalContents({ todos, onSave, onClose }) {
   }
 
   const handleSave = () => {
+    if (pauseToast) {
+      return;
+    }
     onSave(editTodos);
     onClose();
   }
@@ -47,7 +54,12 @@ function ModalContents({ todos, onSave, onClose }) {
   }
 
   const handleEditChange = (e) => {
+    const value = e.target.value;
     setEditValue(e.target.value);
+
+    if (value.trim().length >= 3) {
+      setPauseToast(false);
+    }
   }
 
   const handleEditSave = () => {
@@ -102,7 +114,7 @@ function ModalContents({ todos, onSave, onClose }) {
       </div>
       <div className={styles.modalBtnWrapper}>
         <button className={styles.cancelBtn} onClick={handleCancel}>취소</button>
-        <button className={styles.modifyBtn} onClick={handleSave}>수정 완료</button>
+        <button className={styles.modifyBtn} onClick={handleSave} disabled={pauseToast}>수정 완료</button>
       </div>
       <div className={styles.pauseMeassageWrapper}>
         {pauseToast && (
