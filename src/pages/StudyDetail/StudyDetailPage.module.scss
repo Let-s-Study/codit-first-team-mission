@@ -1,0 +1,40 @@
+@use '@/styles/global.scss' as * ;
+
+.wrap{
+    width: 1200px;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 2%;
+    padding: 40px;
+    gap: 10px;
+}
+
+nav{
+    @include flexDirection(row);
+    @include flexSort(space-between, center)
+}
+
+.links{
+    @include flexDirection(row);
+    @include flexSort(space-between, center)
+}
+
+.userData{
+    @include flexDirection(column);
+}
+
+.userTitle{
+    @include flexDirection(row);
+    @include flexSort(space-between, center)
+
+}
+.userBtn{
+    @include flexDirection(row);
+    @include flexSort(space-between, center)
+}
+
+.HabitTracker{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+}
