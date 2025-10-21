@@ -31,8 +31,19 @@
 .timeInput {
   @include fonts(9.375rem, $FWtitle, $Ctext);
   height: auto;
+  width: 100%;
+  text-align: center;
+  background: transparent;
+  border: none;
+  outline: none;
 }
-
+.timeEditWrapper {
+  @include flexCenter;
+  width: 100%;
+}
+.timeColon {
+  @include fonts(8.75rem, $FWtitle, $Ctext);
+}
 .buttonWrapper {
   @include flexCenter;
   gap: 2rem;
@@ -40,7 +51,8 @@
   justify-content: center;
 }
 
-.button {
+.startButton {
+  @include designedBtn;
   @include flexCenter;
   gap: 0.5rem;
   max-width: 20rem;

@@ -10,7 +10,8 @@ export function Timer() {
   const [secondsLeft, setSecondsLeft] = useState(initialTime);
   const [isRunning, setIsRunning] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [editValue, setEditValue] = useState(String(initialTime / 60));
+  const [editMinutes, setEditMinutes] = useState(String(initialTime / 60));
+  const [editSeconds, setEditSeconds] = useState("00");
   const [pauseToast, setPauseToast] = useState(false);
   const [finishToast, setFinishToast] = useState(false);
   const [timerStart, setTimerStart] = useState(false);
@@ -29,16 +30,24 @@ export function Timer() {
       setIsEditing(true);
     }
   };
-  const handleInputChange = (e) => {
-    setEditValue(e.target.value);
+  const handleMinuteChange = (e) => {
+    setEditMinutes(e.target.value);
+  };
+  const handleSecondChange = (e) => {
+    let value = parseInt(e.target.value, 10);
+    if (isNaN(value) || value < 0) value = 0;
+    if (value > 59) value = value % 60;
+    setEditSeconds(String(value).padStart(2, "0"));
   };
   const handleInputKeyDown = (e) => {
     if (e.key === "Enter") {
-      const newMinutes = Number(editValue);
-      if (!isNaN(newMinutes) && newMinutes > 0) {
-        const newSeconds = newMinutes * 60;
-        setInitialTime(newSeconds);
-        setSecondsLeft(newSeconds);
+      const newMinutes = parseInt(editMinutes, 10) || 0;
+      const newSecondsValue = parseInt(editSeconds, 10) || 0;
+      const totalSeconds = newMinutes * 60 + newSecondsValue;
+
+      if (totalSeconds > 0) {
+        setInitialTime(totalSeconds);
+        setSecondsLeft(totalSeconds);
         setIsEditing(false);
       }
     }
@@ -55,7 +64,8 @@ export function Timer() {
   const handleInputBlur = () => {
     // 영역에서 벗어나면 입력모드 취소
     setIsEditing(false);
-    setEditValue(String(initialTime / 60));
+    setEditMinutes(String(Math.floor(initialTime / 60)));
+    setEditSeconds(String(initialTime % 60).padStart(2, "0"));
   };
 
   const handleStart = () => {
@@ -95,15 +105,25 @@ export function Timer() {
       <div className={Style.timer}>
         <div className={Style.stopWatch}>
           {isEditing ? (
-            <input
-              type="number"
-              value={editValue}
-              onChange={handleInputChange}
-              onKeyDown={handleInputKeyDown}
-              onBlur={handleInputBlur}
-              autoFocus
-              className={Style.timeInput}
-            />
+            <div className={Style.timeEditWrapper}>
+              <input
+                type="number"
+                value={editMinutes}
+                onChange={handleMinuteChange}
+                onKeyDown={handleInputKeyDown}
+                className={Style.timeInput}
+                autoFocus
+              />
+              <span className={Style.timeColon}>:</span>
+              <input
+                type="number"
+                value={editSeconds}
+                onChange={handleSecondChange}
+                onKeyDown={handleInputKeyDown}
+                onBlur={handleInputBlur}
+                className={Style.timeInput}
+              />
+            </div>
           ) : (
             <div
               onClick={handleDisplayClick}
@@ -134,7 +154,7 @@ export function Timer() {
           ) : (
             <button
               type="button"
-              className={Style.button}
+              className={Style.startButton}
               onClick={handleStart}
               disabled={isRunning}
             >
