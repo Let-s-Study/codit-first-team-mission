@@ -54,16 +54,9 @@ $breakpoint-desktop: 1200px;
   justify-content: center;
   align-items: center;
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 }
 
 @mixin flexSort($justify, $alignItems) {
-  display: flex;
-  justify-content: $justify;
-  align-items: $alignItems;
   display: flex;
   justify-content: $justify;
   align-items: $alignItems;
@@ -78,24 +71,15 @@ $breakpoint-desktop: 1200px;
   @media (max-width: #{$breakpoint-mobile}) {
     @content;
   }
-  @media (max-width: #{$breakpoint-mobile}) {
-    @content;
-  }
 }
 
 @mixin tablet {
   @media (max-width: #{$breakpoint-tablet}) {
     @content;
   }
-  @media (max-width: #{$breakpoint-tablet}) {
-    @content;
-  }
 }
 
 @mixin desktop {
-  @media (max-width: #{$breakpoint-desktop}) {
-    @content;
-  }
   @media (max-width: #{$breakpoint-desktop}) {
     @content;
   }
@@ -122,6 +106,16 @@ a {
     background: #99C08E;
     border: none;
     text-shadow: -0.5px -2px #578246 ;
+    @include tablet {
+      & {
+        font-size: $FSsubtitle;
+      }
+    }
+    @include mobile {
+      & {
+        font-size: 0.625rem;
+      }
+    }
 }
 
 button {
