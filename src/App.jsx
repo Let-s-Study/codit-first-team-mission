@@ -1,10 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import './styles/global.scss'
 import { Layout } from './components/layout/Layout'
 import { HomePage } from './pages/HomePage/HomePage'
 import { HabitPage } from './pages/HabitPage/HabitPage'
 import { FocusPage } from './pages/FocusPage/FocusPage'
+import { CreateStudyPage } from './pages/CreateStudy/CreateStudyPage'
 import { StudyDetailPage } from './pages/StudyDetail/StudyDetailPage'
+import './styles/global.scss'
 function App() {
   return (
     <Router>
