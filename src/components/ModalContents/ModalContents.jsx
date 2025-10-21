@@ -1,13 +1,14 @@
 import { React, useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 
-import './ModalContents.scss'
+import styles from './ModalContents.module.scss'
 import frameimg from '../../assets/img/img_frame.png'
 import { TodoItem } from '../TodoItem/TodoItem';
 
 function ModalContents({ todos, onSave, onClose }) {
 
   const [editTodos, setEditTodos] = useState(todos);
+  const [pauseToast, setPauseToast] = useState(false);
 
   useEffect(() => {
     setEditTodos(todos)
@@ -18,6 +19,10 @@ function ModalContents({ todos, onSave, onClose }) {
   }
 
   const handleAdd = (text) => {
+    if (editValue.trim().length < 3) {
+      setPauseToast(true);
+      return;
+    }
     const newTodo = {
       id: nanoid(),
       text: text,
@@ -31,6 +36,9 @@ function ModalContents({ todos, onSave, onClose }) {
   }
 
   const handleSave = () => {
+    if (pauseToast) {
+      return;
+    }
     onSave(editTodos);
     onClose();
   }
@@ -46,10 +54,19 @@ function ModalContents({ todos, onSave, onClose }) {
   }
 
   const handleEditChange = (e) => {
+    const value = e.target.value;
     setEditValue(e.target.value);
+
+    if (value.trim().length >= 3) {
+      setPauseToast(false);
+    }
   }
 
   const handleEditSave = () => {
+    if (editValue.trim().length < 3) {
+      setPauseToast(true);
+      return;
+    }
     setEditTodos((prevTodos) =>
       prevTodos.map((t) =>
         t.id === editId ? { ...t, text: editValue } : t)
@@ -64,18 +81,17 @@ function ModalContents({ todos, onSave, onClose }) {
   }
 
   return (
-    <div className="list_section">
+    <div className={styles.listSection}>
       <h2>습관 목록</h2>
-
       {editTodos.length === 0 ? (
         <p>아직 습관이 없어요<br />목록 수정을 눌러 습관을 생성해보세요</p>
       ) : (
-        <ul className="underline_list">
+        <ul className={styles.underlineList}>
           {editTodos.map((todo) =>
             editId === todo.id ? (
               <li key={todo.id}>
                 <input
-                  className="input_btn"
+                  className={styles.inputBtn}
                   value={editValue}
                   onChange={handleEditChange}
                   onBlur={handleEditSave}
@@ -88,17 +104,24 @@ function ModalContents({ todos, onSave, onClose }) {
                 todo={todo}
                 showDelete={true}
                 onDelete={() => handleDelete(todo.id)}
-                onDoubleClick={() => handleEditStart(todo)} />
+                onClick={() => handleEditStart(todo)} />
             ))}
+
         </ul>
       )}
-      <div className="frame_btn_wrapper">
-        <img src={frameimg} className="frame_btn" onClick={() => handleAdd('')} />
+      <div className={styles.frameBtnWrapper}>
+        <button src={frameimg} className={styles.frameBtn} onClick={() => handleAdd('')}>+ </button>
       </div>
-      <div className="modal_btn_wrapper">
-        <button className="cancel_btn" onClick={handleCancel}>취소</button>
-        <button className="modify_btn" onClick={handleSave}>수정 완료</button>
+      <div className={styles.modalBtnWrapper}>
+        <button className={styles.cancelBtn} onClick={handleCancel}>취소</button>
+        <button className={styles.modifyBtn} onClick={handleSave} disabled={pauseToast}>수정 완료</button>
       </div>
+      <div className={styles.pauseMeassageWrapper}>
+        {pauseToast && (
+          <div className={styles.pauseMessage}><p>🚨 습관을 3자 이상으로 설정해주세요</p></div>
+        )}
+      </div>
+
     </div>
   )
 }

@@ -1,14 +1,14 @@
 import { createPortal } from 'react-dom';
-import './Modal.scss';
+import styles from './Modal.module.scss';
 
-function Modal({ children, isOpen, onClose }) {
+function Modal({ children, isOpen }) {
   if (!isOpen) {
     return null;
   }
 
   return createPortal(
-    <div className="overlay">
-      <div className="modal">
+    <div className={styles.overlay}>
+      <div className={styles.modal}>
         {children}
       </div>
     </div>,

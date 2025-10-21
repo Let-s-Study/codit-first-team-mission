@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
-import style from './Header.module.scss'
-
-export function CreateStudyBtn() {
-        return (
+import style from './Header.module.scss';
+export function CreateStudyBtn() {  
+    return (
         <Link to = "/create">
         <button className={style.create}>스터디 만들기
         </button>

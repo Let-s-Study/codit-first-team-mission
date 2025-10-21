@@ -1,7 +1,0 @@
-@use '../../styles/main.scss' as *;
-
-nav {
-  @include flexSort(space-between, center);
-
-}
-

@@ -1,0 +1,45 @@
+@use '@/styles/global.scss' as *;
+
+
+.wrap{
+    width:1072px;
+    height:384px;
+}
+
+.dayList{
+    width: 826px;
+}
+
+.empty{
+    width:198px;
+}
+
+.day{
+    text-align: center;
+    width: 118px;
+}
+
+.habit {
+    text-align: right;
+    padding: 0.5rem 0.75rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.cell {
+    padding-left: 40px;
+}
+
+.toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #d1d5db;
+    background-color: #f1f5f9;
+    cursor: pointer;
+}
+
+.toggle.is-active {
+    background-color: #d9f99d;
+    border-color: #d9f99d;
+}
