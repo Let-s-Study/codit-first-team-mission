@@ -18,7 +18,11 @@ function App() {
         </Route>
       </Routes>
     </Router>
-  )
+  );
 }
 
+<<<<<<< HEAD
 export default App;
+=======
+export default App;
+>>>>>>> f98c6f55b3956d69092a010dd1225290c4b9d6dd
