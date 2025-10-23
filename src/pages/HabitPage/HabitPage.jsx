@@ -1,17 +1,14 @@
 import { React, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { Link } from 'react-router-dom';
+import { Panel } from '@/components/Panel/Panel'
+import { HabitDetail } from '@/pages/HabitPage/HabitDetail/HabitDetail'
+import { TodayButtons } from '@/components/Buttons/TodayButtons/TodayButtons'
+import { Modal } from '@/components/Modal/Modal'
+import { ModalContents } from '@/components/Modal/Contents/HabitModalContents'
+import { EmptyState } from "@/components/EmptyState/EmptyState";
 
 import styles from './HabitPage.module.scss'
-import arrowRight from '../../assets/img/ic_arrow_right.png'
-
-import { Panel } from '../../components/Panel/Panel'
-import { TodoItem } from '../../components/TodoItem/TodoItem'
-
-import Modal from '../../components/Modal/Modal'
-import ModalContents from '../../components/ModalContents/ModalContents'
-
-
 export function HabitPage({ onDelete }) {
   const now = new Date();
   const title = "연우의 개발 공장";
@@ -41,16 +38,7 @@ export function HabitPage({ onDelete }) {
           <div className={styles.titleContainer}>
             <h1 className={styles.title}>{title}</h1>
           </div>
-          <div className={styles.menuContainer}>
-            <button>
-              오늘의 집중
-              <img src={arrowRight} className={styles.arrowIcon}></img>
-            </button>
-            <button>
-              홈
-              <img src={arrowRight} className={styles.arrowIcon}></img>
-            </button>
-          </div>
+          <TodayButtons value="habit"/>
         </div>
         <div className={styles.timeContainer}>
           <h3>현재 시간</h3>
@@ -62,29 +50,25 @@ export function HabitPage({ onDelete }) {
             minute: '2-digit'
           })}</p>
         </div>
-
-
         <section className={styles.listSection}>
-          <div className={styles.listWrapper}>
             <Panel>
-              <div className={styles.listTitleSection}>
+                <div className={styles.listNav}>
                 <h2>오늘의 습관</h2>
                 <button onClick={() => setIsOpen(true)}>목록 수정</button>
+                </div>
                 <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
                   <ModalContents
                     todos={todos}
                     onSave={setTodos}
                     onClose={() => setIsOpen(false)} />
                 </Modal>
-
-              </div>
               {todos.length === 0 ? (
-                <p>아직 습관이 없어요<br />목록 수정을 눌러 습관을 생성해보세요</p>
+                <EmptyState message="아직 습관이 없어요." />
               ) : (
-
                 <ul className={styles.todoList}>
                   {todos.map((todo) => (
-                    <TodoItem
+                    <HabitDetail
+                      key={todo.id}
                       todo={todo}
                       onClick={toggleClick}
                       onDelete={() => onDelete(todo.id)}
@@ -93,7 +77,6 @@ export function HabitPage({ onDelete }) {
                 </ul>
               )}
             </Panel>
-          </div>
         </section>
       </div>
     </div>

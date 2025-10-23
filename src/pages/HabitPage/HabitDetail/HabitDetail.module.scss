@@ -1,7 +1,7 @@
-@use '@/styles/global.scss' as *;
+@use '@/styles/global.scss' as v;
 
 .todoItem {
-  @include flexCenter;
+  @include v.flexCenter;
   width: 25rem;
   height: 3.35rem;
   margin-bottom: 1rem;
@@ -32,10 +32,10 @@
 }
 
 .itemInner {
-  @include flexCenter;
+  @include v.flexCenter;
 }
 
-@include mobile {
+@include v.mobile {
   .todoItem {
     width: 14rem;
   }

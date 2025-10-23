@@ -1,0 +1,18 @@
+@use '@/styles/global.scss' as *;
+
+    .pointSection {
+        @include flexDirection(column);
+        align-items: flex-start;
+        gap: 0.5rem;
+        .currentPoints {
+            @include fonts($FSsubtitle, $FWsubtext, $Csubtext);
+        }
+        .pointBox {
+            @include flexCenter;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 3.125rem;
+            background: rgba(255, 255, 255, 0.30);
+            border: 0.0625rem solid rgba(0, 0, 0, 0.10);
+        }
+    }

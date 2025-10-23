@@ -94,16 +94,16 @@ export function Timer() {
       </div>
       <div className={Style.timer}>
         <div className={Style.stopWatch}>
-          {isEditing ? (
-            <input
-              type="number"
-              value={editValue}
-              onChange={handleInputChange}
-              onKeyDown={handleInputKeyDown}
-              onBlur={handleInputBlur}
-              autoFocus
-              className={Style.timeInput}
-            />
+            {isEditing ? (
+              <input
+                type="number"
+                value={editValue}
+                onChange={handleInputChange}
+                onKeyDown={handleInputKeyDown}
+                onBlur={handleInputBlur}
+                autoFocus
+                className={Style.timeInput}
+              />
           ) : (
             <div
               onClick={handleDisplayClick}

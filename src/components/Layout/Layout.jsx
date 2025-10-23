@@ -1,7 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { Header } from './Header';
-import { CreateStudyBtn } from './CreateBtn';
-import './Header.module.scss';
+import { CreateStudyBtn } from '../Buttons/CreateButton';
 
 export function Layout(){
     const location = useLocation();

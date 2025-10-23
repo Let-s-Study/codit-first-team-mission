@@ -1,45 +1,59 @@
-@use '@/styles/global.scss' as *;
+@use '@/styles/global.scss' as v;
 
+
+.container {
+    display: flex;
+    padding: 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
 
 .wrap{
-    width:1072px;
-    height:384px;
+    display: flex;
+    flex-direction: column;
+    align-items:  flex-end;
 }
 
-.dayList{
-    width: 826px;
-}
+.title {
+        @include v.fonts(v.$FStitle, v.$FWtitle, v.$Ctext);
+    }
 
-.empty{
-    width:198px;
-}
-
-.day{
+.daysContainer{
     text-align: center;
-    width: 118px;
-}
+    @include v.fonts(v.$FSsubtitle, v.$FWsubtext,v.$Csubtext);
+        & .day{
+            width: 7.375rem;
+            line-height: 1.625rem;
+        }
+    }
+    
+    .habit {
+        text-align: right;
+        justify-items: center;
+        @include v.fonts(v.$FSsubtitle, v.$FWsubtitle,v.$Ctext);
+        & th{
+            display: flex;
+            justify-content: center;
+            width: 15.375rem;
+            height: 4rem;
+            padding: 0 1.5rem;
+            gap: 0.625rem;
+            flex-shrink: 0;
+        }
+        
+    }
 
-.habit {
-    text-align: right;
-    padding: 0.5rem 0.75rem;
-    font-weight: 600;
-    color: #111827;
-}
+    .tracker{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-items: center;
+    }
 
-.cell {
-    padding-left: 40px;
-}
+    .cell {
+        padding: 0.875rem 2.5625rem;
+        justify-content: center;
+        align-items: center;
+    }
 
-.toggle {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 1px solid #d1d5db;
-    background-color: #f1f5f9;
-    cursor: pointer;
-}
-
-.toggle.is-active {
-    background-color: #d9f99d;
-    border-color: #d9f99d;
-}

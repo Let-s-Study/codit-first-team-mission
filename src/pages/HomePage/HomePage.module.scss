@@ -1,19 +1,19 @@
-@use "@/styles/global" as *;
+@use "@/styles/global" as v;
 
 .homeWrap {
-  background-color: $Cbg;
+  background-color: v.$Cbg;
   padding: 3rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 3rem;
   min-height: 100vh;
 
-  @include tablet {
+  @include v.tablet {
     padding: 2rem 1rem;
     gap: 2rem;
   }
 
-  @include mobile {
+  @include v.mobile {
     padding: 1.5rem 1rem;
     gap: 1.5rem;
   }
@@ -34,21 +34,21 @@
   }
 
   h2 {
-    @include fonts($FStitle, $FWbase, $Ctext);
+    @include v.fonts(v.$FStitle, v.$FWbase, v.$Ctext);
     margin-bottom: 1rem;
 
-    @include tablet {
-      @include fonts(1.1rem, $FWbase, $Ctext);
+    @include v.tablet {
+      @include v.fonts(1.1rem, v.$FWbase, v.$Ctext);
       margin-bottom: 0.8rem;
     }
   }
 
-  @include tablet {
+  @include v.tablet {
     padding: 1.8rem;
     border-radius: 16px;
   }
 
-  @include mobile {
+  @include v.mobile {
     padding: 1.5rem;
     border-radius: 14px;
   }

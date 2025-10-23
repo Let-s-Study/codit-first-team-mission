@@ -29,11 +29,9 @@ export function TrackContainer() {
             { id: nanoid(), text: '물 2L 먹기', isDone: false },
             ];
             const mockRecords = {
-            wake6: [true, false, true, false, false, true, false],
-            stretch: [false, true, false, false, false, false, false],
-            water: [true, true, true, false, false, false, false],
-            d: [true, true, true, false, false, false, false],
-            wddater: [true, true, true, false, false, false, false]
+            '미라클모닝 6시 기상': [true, false, true, false, true, true, false],
+            '스트레칭': [false, true, false, true, false, true, false],
+            '물 2L 먹기': [true, true, true, false, true, false, false],
             };
 
             setHabits(mockHabits);
@@ -45,17 +43,6 @@ export function TrackContainer() {
 
         fetchData();
     }, []);
-
-    const handleToggle = (habitId, dayIdx) => {
-        setRecords((prev) => {
-        const next = { ...prev };
-        const row = [...(next[habitId] || Array(7).fill(false))];
-        row[dayIdx] = !row[dayIdx];
-        next[habitId] = row;
-        return next;
-        });
-    };
-
     if (isLoading) return <div>로딩 중...</div>;
 
     if (!habits || habits.length === 0) {
@@ -71,7 +58,6 @@ export function TrackContainer() {
         <HabitTracker
         habits={habits}
         records={records}
-        onToggle={handleToggle}
         />
     );
     }

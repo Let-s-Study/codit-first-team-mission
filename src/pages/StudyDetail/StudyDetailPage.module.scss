@@ -1,40 +1,100 @@
-@use '@/styles/global.scss' as * ;
+@use '@/styles/global.scss' as v ;
 
 .wrap{
-    width: 1200px;
+    border-radius: 1.25rem;
+    background: #FFF;
+    display: flex;
+    padding: 2.5rem;
     flex-direction: column;
-    background-color: #fff;
-    border-radius: 2%;
-    padding: 40px;
-    gap: 10px;
+    gap: 2.5rem;
+    & nav{
+            @include v.flexDirection(row);
+            @include v.flexSort(space-between, center)
+    }
 }
 
-nav{
-    @include flexDirection(row);
-    @include flexSort(space-between, center)
+
+.linksWrap{
+    @include v.flexDirection(row);
+    @include v.flexSort(space-between, center);
+    gap: 1.5rem;
+    color:#578246;
 }
 
 .links{
-    @include flexDirection(row);
-    @include flexSort(space-between, center)
+        position: relative;
+        text-align: center;
+        font-family: 'Pretendard';
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        cursor: pointer;
+    &::after{
+            content: "";
+            width: 2px;
+            height: 16px;
+            position: absolute;
+            top: 55%;
+            right: -0.7rem;
+            transform: translateY(-50%);
+            background-color: #578246;
+    }
+        &:last-child{
+        color: #818181;
+    }
+    &:last-child::after{
+            display: none;
+    }
 }
-
 .userData{
-    @include flexDirection(column);
+    @include v.flexDirection(column);
+    padding-top: 1.5rem;
+    gap: 1rem;
 }
 
-.userTitle{
-    @include flexDirection(row);
-    @include flexSort(space-between, center)
+.userNav{
+    @include v.flexDirection(row);
+    @include v.flexSort(space-between, center);
+    h1 {
+            @include v.fonts(v.$FSmaintitle, v.$FWtitle,v.$Ctext);
+    }
 
 }
 .userBtn{
-    @include flexDirection(row);
-    @include flexSort(space-between, center)
+    @include v.flexDirection(row);
+    @include v.flexSort(space-between, center)
 }
 
 .HabitTracker{
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 1.25rem;
+    border: 1px solid var(--gray-gray_DDDDDD, #DDD);
+}
+
+.userDetail{
+    @include v.flexDirection(column);
+    align-items: flex-start;
+    gap: 1.5rem;
+    label {
+        color: var(--gray-gray_818181, #818181);
+        font-family: 'Pretendard';
+        font-size: 1.125rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    p {
+        color: var(--black-black_414141, #414141);
+        font-family: 'Pretendard';
+        font-size: 1.125rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 1.625rem;
+    }
+    margin-bottom: 5px;
+}
+
+.userDescription{
+    @include v.flexDirection(column);
+    gap: 0.5rem;
 }

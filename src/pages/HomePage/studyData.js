@@ -8,6 +8,7 @@ export const studyList = [
     reactions: { study: 37, fire: 26, heart: 14 },
     color: "green",
   },
+  
   {
     id: 2,
     title: "연욱의 개발공장",

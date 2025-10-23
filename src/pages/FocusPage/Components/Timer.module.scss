@@ -1,22 +1,22 @@
-@use "@/styles/global.scss" as *;
+@use "@/styles/global.scss" as v;
 
 .wrapper {
   width: 100%;
   max-width: 1280px;
-  @include flexDirection(column);
-  @include flexCenter;
+  @include v.flexDirection(column);
+  @include v.flexCenter;
   gap: 1.5rem;
   border-radius: 1rem;
-  border: 0.0625rem solid $Cborder;
+  border: 0.0625rem solid v.$Cborder;
   padding: 2rem;
 }
 
 .timerTitle {
-  @include fonts($FStitle, $FWtitle, $Ctext);
+  @include v.fonts(v.$FStitle, v.$FWtitle, v.$Ctext);
 }
 
 .timer {
-  @include flexCenter;
+  @include v.flexCenter;
   flex-direction: column;
   border-radius: 0.5rem;
   gap: 1.5rem;
@@ -24,24 +24,24 @@
 
 .stopWatch {
   .timeDisplay {
-    @include fonts(9.375rem, $FWtitle, $Ctext);
+    @include v.fonts(9.375rem, v.$FWtitle, v.$Ctext);
   }
 }
 
 .timeInput {
-  @include fonts(9.375rem, $FWtitle, $Ctext);
+  @include v.fonts(9.375rem, v.$FWtitle, v.$Ctext);
   height: auto;
 }
 
 .buttonWrapper {
-  @include flexCenter;
+  @include v.flexCenter;
   gap: 2rem;
   max-width: 400rem;
   justify-content: center;
 }
 
 .button {
-  @include flexCenter;
+  @include v.flexCenter;
   gap: 0.5rem;
   max-width: 20rem;
   padding: 1rem 0.5rem;
@@ -66,7 +66,7 @@
 }
 
 .pauseMessage {
-  @include flexCenter;
+  @include v.flexCenter;
   height: 2.9375rem;
   width: 13.9375rem;
   background-color: #fde0e9;
@@ -75,7 +75,7 @@
   font-weight: 500;
 }
 .finishMessage {
-  @include flexCenter;
+  @include v.flexCenter;
   height: 2.9375rem;
   width: 13.9375rem;
   background-color: #e1edde;
@@ -90,14 +90,14 @@
 .timeMinus {
   color: #818181;
 }
-@mixin mobile {
+@include v.mobile {
   .timeInput,
   .timeDisplay {
     font-size: 5rem;
   }
 }
 
-@mixin tablet {
+@include v.tablet {
   .timeInput,
   .timeDisplay {
     font-size: 7.5rem;

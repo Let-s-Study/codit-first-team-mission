@@ -1,8 +1,10 @@
 import logo from '@/assets/img_logo.svg'
 import { Link } from 'react-router-dom'
 import styles from './Header.module.scss'
+
 export function Header ({ actions = null }) {
     return (
+        <div className={styles.Header}>
         <nav>
             <Link to ="/">
             <div className={styles.logoSpace}>
@@ -11,5 +13,6 @@ export function Header ({ actions = null }) {
             </Link>
             {actions}
         </nav>
+        </div>
     )
 }

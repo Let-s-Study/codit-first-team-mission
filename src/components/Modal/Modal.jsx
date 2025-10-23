@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import styles from './Modal.module.scss';
 
-function Modal({ children, isOpen }) {
+export function Modal({ children, isOpen }) {
   if (!isOpen) {
     return null;
   }
@@ -15,5 +15,3 @@ function Modal({ children, isOpen }) {
     document.getElementById('modal-root')
   )
 }
-
-export default Modal;

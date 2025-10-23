@@ -1,39 +1,42 @@
 // import { HabitTracker } from '../HabitTracker/HabitTracker';
-import { SelectEmojis } from './SelectEmoji';
+import { SelectEmojis } from './SelectEmojis';
 import { TrackContainer } from '../HabitTracker/TrackContainer' 
 import style from './StudyDetailPage.module.scss';
+import { TodayButtons } from '@/components/Buttons/TodayButtons/TodayButtons';
+import { EarnedPoints } from '@/components/Points/EarnedPoints';
+import { EmojiProvider } from '../../context/EmojiContext';
+// import { Modal } from '@/components/Modal/Modal';
 
 export function StudyDetailPage () {
+    
     return(
     <div className={style.wrap}>
         <header>
         <nav>
-            <SelectEmojis/>
-            <div className={style.links}>
-            <div>링크1 </div>
-            <div>| 링크2</div>
-            <div>| 링크3</div>
-            </div>
+            <EmojiProvider>
+                <SelectEmojis/>
+            </EmojiProvider>
+            <ul className={style.linksWrap}>
+                <li className={style.links}>공유하기</li>
+                <li className={style.links} >수정하기</li>
+                <li className={style.links}>스터디 삭제하기 </li>
+            </ul>
         </nav>
         <div className={style.userData}>
-            <div className={style.userTitle}>
+            <div className={style.userNav}>
                 <h1>연우의 개발공장</h1>
-                    <div className={style.userBtn}>
-                    <button>오늘의 습관</button>
-                    <button>오늘의 집중</button>
+                <TodayButtons className={style.userBtn} value="detail"/>
                 </div>
-                </div>
-
-                <p>소개</p>
-                <p>오늘 하루도 화이팅</p>
-                <div>
-                    <p>현재까지 획득한 포인트</p>
-                    <div>뱃지 획득</div>
+            <div className={style.userDetail}>
+                    <div clasName={style.userDescription}>
+                        <label>소개</label>
+                        <p>오늘 하루도 화이팅</p>
+                    </div>
+                    <EarnedPoints />
                 </div>
         </div>
         </header>
         <div className={style.HabitTracker}>
-        <h1>습관 기록표</h1>
         <TrackContainer/>
         </div>
     </div>

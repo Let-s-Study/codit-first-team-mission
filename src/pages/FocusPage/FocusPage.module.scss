@@ -1,7 +1,7 @@
-@use "@/styles/global.scss" as *;
+@use "@/styles/global.scss" as v;
 
 .wrapper {
-  @include flexDirection(column);
+  @include v.flexDirection(column);
   gap: 2rem;
   background-color: #fff;
   border-radius: 1rem;

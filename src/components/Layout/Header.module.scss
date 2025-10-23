@@ -1,32 +1,48 @@
-@use '@/styles/global.scss' as *;
+@use '@/styles/global.scss' as v;
 
-nav {
-    @include flexSort(space-between, center);
-        padding: 1.5rem 1.25rem;
+.Header{
+        @include v.flexCenter;
+        width: 100%;
+        & nav{
+        width: 120rem;
+        @include v.flexDirection(row);
+        @include v.flexSort(space-between,center);
+        padding: 1.5rem 1.25rem;    
+    }
 }
 
-
 .create{
-    @include designedBtn;
+    @include v.designedBtn;
     width: 15.75rem;
     height: 3.625rem;
     padding: 0.625rem;
 }
 
-    @include tablet {
-    .logoSpace {
-        padding: 2rem 5rem;
+    @include v.tablet {
+    nav {
+        width: 46.5rem;
+        @include v.flexSort(space-between,center);
+    }
+    .logoSpace{
+        width: 11.35019rem;
     }
     .create {
-        width: 10rem;        
+        width: 10rem;  
+        height: 3.625rem;      
     }
     }
 
-    @include mobile {
-    .logoSpace {
-        padding: 1rem 2rem;
+    @include v.mobile {
+    nav{
+        width: 23.4375rem;
+
+    }
+    .logoSpace{
+        width: 6.625rem;
+
     }
     .create{
         width: 6.25rem;
+        height: 2.375rem;
     }
     }

@@ -5,7 +5,6 @@ import { HabitPage } from './pages/HabitPage/HabitPage'
 import { FocusPage } from './pages/FocusPage/FocusPage'
 import { CreateStudyPage } from './pages/CreateStudy/CreateStudyPage'
 import { StudyDetailPage } from './pages/StudyDetail/StudyDetailPage'
-import './styles/global.scss'
 function App() {
   return (
     <Router>
@@ -22,4 +21,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

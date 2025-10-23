@@ -1,11 +1,10 @@
 import { React, useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
+import { HabitDetail } from '@/pages/HabitPage/HabitDetail/HabitDetail';
+import styles from './HabitModalContents.module.scss'
+import frameimg from '@/assets/img/img_frame.png'
 
-import styles from './ModalContents.module.scss'
-import frameimg from '../../assets/img/img_frame.png'
-import { TodoItem } from '../TodoItem/TodoItem';
-
-function ModalContents({ todos, onSave, onClose }) {
+export function ModalContents({ todos, onSave, onClose }) {
 
   const [editTodos, setEditTodos] = useState(todos);
   const [pauseToast, setPauseToast] = useState(false);
@@ -99,7 +98,7 @@ function ModalContents({ todos, onSave, onClose }) {
                   autoFocus />
               </li>
             ) : (
-              <TodoItem
+              <HabitDetail
                 key={todo.id}
                 todo={todo}
                 showDelete={true}
@@ -125,6 +124,3 @@ function ModalContents({ todos, onSave, onClose }) {
     </div>
   )
 }
-
-
-export default ModalContents
