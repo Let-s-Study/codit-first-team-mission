@@ -38,11 +38,11 @@
   outline: none;
 }
 .timeEditWrapper {
-  @include flexCenter;
+  @include v.flexCenter;
   width: 100%;
 }
 .timeColon {
-  @include fonts(8.75rem, $FWtitle, $Ctext);
+  @include v.fonts(8.75rem, v.$FWtitle, v.$Ctext);
 }
 .buttonWrapper {
   @include v.flexCenter;
@@ -52,7 +52,7 @@
 }
 
 .button {
-  @include flexCenter;
+  @include v.flexCenter;
   gap: 0.5rem;
   max-width: 20rem;
   padding: 1rem 0.5rem;
