@@ -1,0 +1,12 @@
+@use "@/styles/global.scss" as v;
+
+.wrapper {
+  @include v.flexDirection(column);
+  gap: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 90%;
+  max-width: 75rem;
+  margin: 2rem auto;
+}

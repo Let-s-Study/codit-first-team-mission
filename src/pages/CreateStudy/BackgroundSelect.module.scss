@@ -1,0 +1,33 @@
+    /* 래퍼에 변수(모듈 스코프) */
+    .wrap {
+    --cols: 4;
+    --gap: 12px;
+    --border: #e6e6e6;
+    --focus: #111;
+    --badge-bg: rgba(255,255,255,.92);
+    }
+
+    .grid {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+    gap: var(--gap);
+    width: 648px;
+    }
+
+    .tile {
+    position: relative;
+    display: block;
+    height: 165px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    cursor: pointer;
+    background-position: center;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    }
+    
+    .selectedBg {
+    position: absolute; 
+    }
+
+    @media (max-width: 640px) { .wrap { --cols: 3; } }

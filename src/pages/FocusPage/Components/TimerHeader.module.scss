@@ -1,0 +1,22 @@
+@use "@/styles/global.scss" as v;
+
+.studyBox {
+  width: 100%;
+  @include v.flexSort(space-between, center);
+  .studyTitle {
+    font-size: 2rem;
+    font-weight: v.$FWtitle;
+    color: v.$Ctext;
+  }
+}
+
+@mixin mobile {
+  .studyBox {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .pointSection {
+    align-items: flex-start;
+  }
+}

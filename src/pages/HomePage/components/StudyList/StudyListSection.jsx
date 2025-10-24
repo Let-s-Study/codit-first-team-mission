@@ -1,6 +1,6 @@
 import { useState } from "react";
 import StudyCard from "../StudyCard/StudyCard";
-import { EmptyState } from "../EmptyState/EmptyState";
+import { EmptyState } from "@/components/EmptyState/EmptyState";
 import { CustomSelect } from "./CustomSelect/CustomSelect";
 import { CiSearch } from "react-icons/ci";
 import styles from "./StudyListSection.module.scss";

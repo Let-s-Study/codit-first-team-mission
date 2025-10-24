@@ -1,0 +1,123 @@
+import { React, useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
+import { HabitDetail } from '@/pages/HabitPage/HabitDetail/HabitDetail';
+import styles from './HabitModalContents.module.scss'
+import frameimg from '@/assets/img/img_frame.png'
+
+export function ModalContents({ todos, onSave, onClose }) {
+
+  const [editTodos, setEditTodos] = useState(todos);
+  const [pauseToast, setPauseToast] = useState(false);
+
+  useEffect(() => {
+    setEditTodos(todos)
+  }, [todos]);
+
+  const handleDelete = (id) => {
+    setEditTodos(prevTodos => prevTodos.filter(todo => todo.id !== id))
+  }
+
+  const handleAdd = (text) => {
+    const newTodo = {
+      id: nanoid(),
+      text: text,
+      isDone: false
+    };
+    setEditTodos(prevTodos => [...prevTodos, newTodo]);
+  }
+
+  const handleCancel = () => {
+    onClose();
+  }
+
+  const handleSave = () => {
+    if (pauseToast) {
+      return;
+    }
+    onSave(editTodos);
+    onClose();
+  }
+
+  // edit 기능 구현
+
+  const [editId, setEditId] = useState(null);
+  const [editValue, setEditValue] = useState('');
+
+  const handleEditStart = (todo) => {
+    setEditId(todo.id);
+    setEditValue(todo.text);
+  }
+
+  const handleEditChange = (e) => {
+    const value = e.target.value;
+    setEditValue(e.target.value);
+
+    if (value.trim().length >= 3) {
+      setPauseToast(false);
+      return;
+    }
+  }
+
+  const handleEditSave = () => {
+    if (editValue.trim().length < 3) {
+      setPauseToast(true);
+      return;
+    }
+    setEditTodos((prevTodos) =>
+      prevTodos.map((t) =>
+        t.id === editId ? { ...t, text: editValue } : t)
+    )
+    setEditId(null);
+  }
+
+  const handleInputKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleEditSave();
+    }
+  }
+
+  return (
+    <div className={styles.listSection}>
+      <h2>습관 목록</h2>
+      {editTodos.length === 0 ? (
+        <p>아직 습관이 없어요<br />목록 수정을 눌러 습관을 생성해보세요</p>
+      ) : (
+        <ul className={styles.underlineList}>
+          {editTodos.map((todo) =>
+            editId === todo.id ? (
+              <li key={todo.id}>
+                <input
+                  className={styles.inputBtn}
+                  value={editValue}
+                  onChange={handleEditChange}
+                  onBlur={handleEditSave}
+                  onKeyDown={handleInputKeyDown}
+                  autoFocus />
+              </li>
+            ) : (
+              <HabitDetail
+                key={todo.id}
+                todo={todo}
+                showDelete={true}
+                onDelete={() => handleDelete(todo.id)}
+                onClick={() => handleEditStart(todo)} />
+            ))}
+
+        </ul>
+      )}
+      <div className={styles.frameBtnWrapper}>
+        <button src={frameimg} className={styles.frameBtn} onClick={() => handleAdd('새 습관')}>+</button>
+      </div>
+      <div className={styles.modalBtnWrapper}>
+        <button className={styles.cancelBtn} onClick={handleCancel}>취소</button>
+        <button className={styles.modifyBtn} onClick={handleSave} disabled={pauseToast}>수정 완료</button>
+      </div>
+      <div className={styles.pauseMeassageWrapper}>
+        {pauseToast && (
+          <div className={styles.pauseMessage}><p>🚨 습관을 3자 이상으로 설정해주세요</p></div>
+        )}
+      </div>
+
+    </div>
+  )
+}

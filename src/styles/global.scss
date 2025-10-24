@@ -1,9 +1,15 @@
 @font-face {
   font-family: "JejuStoneWall";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2")
-    format("woff2");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2") format("woff2");
   font-weight: normal;
   font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css") format('css');
+    font-weight: normal;
+    font-display: swap;
 }
 
 * {
@@ -18,21 +24,24 @@ $Ctext: #414141;
 $Csubtext: #818181;
 $Cbtn: #99c08e;
 
-$FFbase: "Pretendard", sans-serif;
-$FFbtn: "JejuStoneWall", sans-serif;
+$FFbase: 'Pretendard', sans-serif;
+$FFbtn:'JejuStoneWall', sans-serif;
 
 $FSbase: 1rem;
 $FSsubtext: 0.875rem;
 $FSsubtitle: 1.125rem;
+$FSmaintitle: 2rem;
 $FStitle: 1.5rem;
 $FSicon: 0.75rem;
 
 $FWsubtext: 400;
 $FWbase: 600;
+$FWsubtitle : 700;
 $FWtitle: 800;
 
-$breakpoint-mobile: 375px;
-$breakpoint-tablet: 744px;
+$breakpoint-mobile: 430px;
+$breakpoint-tablet-start: 375px;
+$breakpoint-tablet: 1024px;
 $breakpoint-desktop: 1200px;
 
 @mixin flexCenter {
@@ -76,6 +85,7 @@ $breakpoint-desktop: 1200px;
   font-size: $size;
   font-weight: $weight;
 }
+
 body {
   background-color: $Cbg;
 }
@@ -84,19 +94,41 @@ a {
   text-decoration: none;
 }
 
+@mixin designedBtn{
+    @include fonts ($FSbase, $FWsubtext ,$Cbtn);
+    color: #fff;
+    font-family: $FFbtn;
+    background: #99C08E;
+    border: none;
+    text-shadow: -0.3px -2px #578246 ;
+    @include tablet {
+      & {
+        font-size: $FSsubtitle;
+        border-radius: 0.875rem;
+      }
+    }
+    @include mobile {
+      & {
+                border-radius: 0.5rem;
+        width: 6.25rem;
+        height: 2.375rem;
+        font-size: 0.625rem;
+        text-shadow: -0.08px -1px #578246 ;
+      }
+    }
+}
+
 button {
   @include flexCenter;
   cursor: pointer;
-  color: #fff;
-  font-family: $FFbtn;
-  font-size: $FSbase;
-  font-weight: $FFbase;
   border-radius: 1rem;
-  background: #99c08e;
-  border: none;
-  text-shadow: -0.5px -2px #578246;
 }
 
 img {
   max-width: 100%;
+}
+
+main {
+    display: flex;
+    justify-content: center;
 }

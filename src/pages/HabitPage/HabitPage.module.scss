@@ -1,0 +1,150 @@
+@use '@/styles/global.scss' as *;
+
+.mainContainer {
+  display: flex;
+  
+}
+
+.appContainer {
+  background-color: #ffffff;
+  border-radius: 1.25rem;
+  padding: 2.5rem;
+  min-width: 800px;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  color: #343a40;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.timeContainer {
+  color: #868e96;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  p {
+    border: solid 1px #ddd;
+    border-radius: 1rem;
+    width: 12rem;
+    background-color: #fff;
+    padding: 10px;
+    white-space: nowrap;
+    color: #000;
+  }
+}
+
+
+.listSection {
+  @include flexCenter;
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+
+.listNav{
+    display: flex;
+    width: 70rem;
+    height: 1.8125rem;
+    padding: 0 22.5625rem 0 31.5625rem;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5.75rem;
+    h2 {
+      font-weight: 800;
+      font-size: 1.5rem;
+      white-space: nowrap;
+    }
+
+    button {
+      color: var(--gray-gray_818181, #818181);
+      font-family: Pretendard;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+      white-space: nowrap;
+    }
+}
+
+.listWrapper {
+  width:100%;
+}
+
+.todoList {
+  text-decoration: none;
+  list-style: none;
+}
+
+
+@include tablet {
+  .mainContainer {
+    padding: 30px;
+  }
+
+  .appContainer {
+    min-width: 20px;
+  }
+
+  .listSection {
+    margin-top: 0;
+  }
+}
+
+@include mobile {
+  .mainContainer {
+    margin: 0;
+  }
+
+  .headerContainer {
+    align-items: start;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .headerContainer {
+    flex-direction: column;
+  }
+
+  .menuContainer {
+    button {
+      font-size: 14px;
+      padding: 8px 12px;
+    }
+  }
+
+  .timeContainer {
+    margin-bottom: 0;
+  }
+
+  .appContainer {
+    padding: 2rem 1.5rem;
+  }
+
+  .listSection {
+    margin-top: 0;
+  }
+}
+
+
+.todo_list {
+  text-decoration: none;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { EmptyState } from "../EmptyState/EmptyState";
+import { EmptyState } from "@/components/EmptyState/EmptyState";
 import { StudyCard } from "../StudyCard/StudyCard";
 import styles from "./RecentStudySection.module.scss";
 

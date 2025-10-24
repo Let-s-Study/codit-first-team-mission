@@ -1,5 +1,5 @@
 import React from "react";
-import leafIcon from "../../assets/leaf_logo.svg";
+import leafIcon from "@/assets/ic_point.png";
 import styles from "./StudyCard.module.scss";
 
 export function StudyCard({

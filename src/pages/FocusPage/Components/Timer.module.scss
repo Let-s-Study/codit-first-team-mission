@@ -1,0 +1,116 @@
+@use "@/styles/global.scss" as v;
+
+.wrapper {
+  width: 100%;
+  max-width: 1280px;
+  @include v.flexDirection(column);
+  @include v.flexCenter;
+  gap: 1.5rem;
+  border-radius: 1rem;
+  border: 0.0625rem solid v.$Cborder;
+  padding: 2rem;
+}
+
+.timerTitle {
+  @include v.fonts(v.$FStitle, v.$FWtitle, v.$Ctext);
+}
+
+.timer {
+  @include v.flexCenter;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  gap: 1.5rem;
+}
+
+.stopWatch {
+  .timeDisplay {
+    @include v.fonts(9.375rem, v.$FWtitle, v.$Ctext);
+  }
+}
+
+.timeInput {
+  @include v.fonts(9.375rem, v.$FWtitle, v.$Ctext);
+  height: auto;
+  width: 100%;
+  text-align: center;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+.timeEditWrapper {
+  @include v.flexCenter;
+  width: 100%;
+}
+.timeColon {
+  @include v.fonts(8.75rem, v.$FWtitle, v.$Ctext);
+}
+.buttonWrapper {
+  @include v.flexCenter;
+  gap: 2rem;
+  max-width: 400rem;
+  justify-content: center;
+}
+
+.button {
+  @include v.flexCenter;
+  gap: 0.5rem;
+  max-width: 20rem;
+  padding: 1rem 0.5rem;
+  &:disabled {
+    background-color: #818181;
+    color: #fff;
+    cursor: not-allowed;
+  }
+}
+
+.pauseButton,
+.resetButton {
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  text-shadow: none;
+  cursor: pointer;
+}
+
+.pauseMessage {
+  @include v.flexCenter;
+  height: 2.9375rem;
+  width: 13.9375rem;
+  background-color: #fde0e9;
+  border-radius: 1rem;
+  color: #f50e0e;
+  font-weight: 500;
+}
+.finishMessage {
+  @include v.flexCenter;
+  height: 2.9375rem;
+  width: 13.9375rem;
+  background-color: #e1edde;
+  border-radius: 1rem;
+  color: #578246;
+  font-weight: 500;
+}
+.running {
+  color: #f50e0e;
+}
+
+.timeMinus {
+  color: #818181;
+}
+@include v.mobile {
+  .timeInput,
+  .timeDisplay {
+    font-size: 5rem;
+  }
+}
+
+@include v.tablet {
+  .timeInput,
+  .timeDisplay {
+    font-size: 7.5rem;
+  }
+}

@@ -1,0 +1,27 @@
+@use '@/styles/global.scss' as *;
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: white;
+  border-radius: 1.25rem;
+  margin-top: 20px;
+  border: solid 1px #DDD;
+  padding: 2.5rem;
+  width: 100%;
+  align-items: center;
+}
+
+
+@include tablet {
+  .panel {
+    padding: 2.5rem 4rem;
+  }
+}
+
+@include mobile {
+  .panel {
+    padding: 2.5rem 1rem;
+  }
+}
