@@ -12,7 +12,7 @@ export function StudyListSection({ studies, onStudyClick, onReactionUpdate }) {
 
   const handleSearch = (e) => setSearchText(e.target.value);
   const handleSort = (e) => setSortType(e.target.value);
-  const handleLoadMore = () => setVisibleCount(visibleCount + 3);
+  const handleLoadMore = () => setVisibleCount((prev) => prev + 3);
 
   const filtered = studies.filter((study) => {
     const text = searchText.toLowerCase();
@@ -23,8 +23,11 @@ export function StudyListSection({ studies, onStudyClick, onReactionUpdate }) {
   });
 
   const sorted = [...filtered].sort((a, b) => {
-    if (sortType === "recent") return b.id - a.id;
-    if (sortType === "old") return a.id - b.id;
+    const dateA = new Date(a.createdAt);
+    const dateB = new Date(b.createdAt);
+
+    if (sortType === "recent") return dateB - dateA;
+    if (sortType === "old") return dateA - dateB;
     if (sortType === "highPoints") return b.points - a.points;
     if (sortType === "lowPoints") return a.points - b.points;
     return 0;
