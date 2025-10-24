@@ -5,30 +5,27 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
-        & input{
-        width: 40.5rem;
-        height: 3rem;
-        border-radius: 0.9375rem;
-        padding: 1.25rem;
-        border: 1px solid var(--gray-gray_DDDDDD, #DDD);
-        background: #FFF;}
-        & textarea{
-            width: 100%;
-            height: 3rem;
+        & input, & textarea{
+            width: 40.5rem;
             border-radius: 0.9375rem;
             padding: 1.25rem;
             border: 1px solid var(--gray-gray_DDDDDD, #DDD);
-            background: #FFF;
+            font-family: v.$FFbase;
+        }
+        & input{
+        height: 3rem;
+        background: #FFF;}
+        & textarea {
+            height: 6.25rem;
+
         }
 }
-.error{
-    color: var(--red-error_C41013, #C41013);
-    font-family: 'Pretendard';
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-.label{
+
+label{
     @include v.fonts(v.$FSsubtitle, v.$FWbase,v.$Ctext);
 }
+.error{
+    @include v.fonts(v.$FSsubtext, v.$FWsubtext,v.$Cerror);
+
+}
+

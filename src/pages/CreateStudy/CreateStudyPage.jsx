@@ -80,7 +80,6 @@ const handleSubmit = async (e) => {
         const res = await apiClient.post("/studies", values);
 
         console.log("[POST] response:", res.status, res.data);
-
         // 성공 시
         const created = res.data;
         alert("스터디가 성공적으로 만들어졌어요!");
@@ -98,8 +97,6 @@ const handleSubmit = async (e) => {
         setIsSubmitting(false);
     }
     };
-
-
     return (
         <div className={style.wrap}>
         <form onSubmit={handleSubmit} noValidate>
@@ -153,7 +150,7 @@ const handleSubmit = async (e) => {
                 placeholder="비밀번호를 다시 한 번 입력해 주세요"
                 error={errors.passwordCheck}
             />
-            <button className={style.create}>만들기</button>
+            <button type='submit' className={style.create}>만들기</button>
         </form>
         </div>
     );
