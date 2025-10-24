@@ -36,7 +36,7 @@ export function BackgroundSelect(props){
                 style={bgStyle} 
                 > 
                 {isSelected &&
-                <img src={selectedBg} className={selectedBg} />}
+                <img src={selectedBg} className={selectedBg} alt={it.id}/>}
                 </button>
             );
             })}
