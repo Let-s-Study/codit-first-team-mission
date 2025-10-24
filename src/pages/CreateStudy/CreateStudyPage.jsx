@@ -1,6 +1,6 @@
 import style from './CreateStudyPage.module.scss'
 import { BackgroundSelect } from './BackgroundSelect.jsx'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
     validateNickName,
     validateTitle,
@@ -11,7 +11,7 @@ import {
     validateAll,
     } from './vaildators/vaildators'
 import { InputSection } from './InputSection'
-
+import apiClient from "@/api/client";
 
 import sampleImg1 from '@/assets/samples/sample_img.jpg'
 import sampleImg2 from '@/assets/samples/sample_img2.jpg'
@@ -30,6 +30,9 @@ const ITEMS = [
     ];
 
 export function CreateStudyPage(){
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [serverError, setServerError] = useState("");
+
     const [values, setValues] = useState ({
         nickName: '',
         title:'',
@@ -46,14 +49,12 @@ export function CreateStudyPage(){
     const handleValue = (e) => {
         const { name, value } = e.target;
         setField(name, value);
-
-        // 필드별 즉시 검증
         let msg = "";
-        if (name === "nickName") msg = validateNickName(value);
-        if (name === "title") msg = validateTitle(value);
-        if (name === "description") msg = validateDescription(value);
-        if (name === "password") msg = validatePassword(value);
-        if (name === "passwordCheck") msg = validatePasswordCheck(values.password, value);
+            if (name === "nickName") msg = validateNickName(value);
+            if (name === "title") msg = validateTitle(value);
+            if (name === "description") msg = validateDescription(value);
+            if (name === "password") msg = validatePassword(value);
+            if (name === "passwordCheck") msg = validatePasswordCheck(values.password, value);
         setErrors((prev) => ({ ...prev, [name]: msg }));
     };
 
@@ -63,19 +64,41 @@ export function CreateStudyPage(){
         setErrors((prev) => ({ ...prev, backgroundId: msg }));
     };
 
-    const handleSubmit = async (e) =>{
-        e.preventDefault();
-        const nextErrors = validateAll(values);
-        setErrors(nextErrors);
-        if (Object.keys(nextErrors).length) return; // 에러 있으면 중단
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    const nextErrors = validateAll(values);
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length) return;
 
-        console.log("submit values:", values);
+    setIsSubmitting(true);
+    setServerError("");
 
-        // TODO: API 호출
-        // try {
-        //   const res = await fetch('/api/studies', { method:'POST', body: JSON.stringify(values) });
-        // } catch (err) { ... }
+    try {
+        console.log("[POST] values:", values);
+
+        // ✅ axios는 fetch가 아니라 post 메서드 사용
+        const res = await apiClient.post("/studies", values);
+
+        console.log("[POST] response:", res.status, res.data);
+
+        // 성공 시
+        const created = res.data;
+        alert("스터디가 성공적으로 만들어졌어요!");
+        window.location.href = "/detail/" + created.id;
+
+    } catch (err) {
+        console.error("[POST] error:", err);
+        // 서버가 보낸 에러메시지 접근 방법
+        const msg =
+        err.response && err.response.data && err.response.data.error
+            ? err.response.data.error
+            : "서버 오류가 발생했습니다.";
+        alert(msg);
+    } finally {
+        setIsSubmitting(false);
+    }
     };
+
 
     return (
         <div className={style.wrap}>
