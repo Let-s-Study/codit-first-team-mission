@@ -3,8 +3,7 @@ import { useState, createContext } from "react";
 export const EmojiContext = createContext();
 
 export function EmojiProvider({ children }) {
-    const [emojis, setEmojis] = useState([]); // { "😀": 2, "🔥": 1 }
-
+    const [emojis, setEmojis] = useState([]);
     const addEmoji = (emoji) => {
         setEmojis((prev) => {
         const found = prev.find((e) => e.emoji === emoji);

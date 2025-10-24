@@ -8,11 +8,10 @@
     flex-direction: column;
     gap: 2.5rem;
     & nav{
-            @include v.flexDirection(row);
-            @include v.flexSort(space-between, center)
+        @include v.flexDirection(row);
+        @include v.flexSort(space-between, center)
     }
 }
-
 
 .linksWrap{
     @include v.flexDirection(row);

@@ -6,9 +6,9 @@ import { HabitDetail } from '@/pages/HabitPage/HabitDetail/HabitDetail'
 import { TodayButtons } from '@/components/Buttons/TodayButtons/TodayButtons'
 import { Modal } from '@/components/Modal/Modal'
 import { ModalContents } from '@/components/Modal/Contents/HabitModalContents'
-import { EmptyState } from "@/components/EmptyState/EmptyState";
-
+import { EmptyState } from "@/components/EmptyState/EmptyState"
 import styles from './HabitPage.module.scss'
+
 export function HabitPage({ onDelete }) {
   const now = new Date();
   const title = "연우의 개발 공장";

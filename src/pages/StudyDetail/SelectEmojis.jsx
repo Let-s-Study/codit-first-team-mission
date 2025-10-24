@@ -1,25 +1,36 @@
 // ✅ SelectEmojis.jsx
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import EmojiPicker from "emoji-picker-react";
-import addBtn from "@/assets/btn_add.svg";
+import ic_smile from "@/assets/ic_smile.svg";
 import { EmojiContainer } from "./EmojiContainer";
-import { EmojiContext } from "../../context/EmojiContext";
-    export function SelectEmojis() {
+import { EmojiContext } from "@/context/EmojiContext";
+import styles from "./SelectEmojis.module.scss";
+
+export function SelectEmojis() {
     const [showPicker, setShowPicker] = useState(false);
-    const { emojis, addEmoji } = useContext(EmojiContext); // Context 접근
+    const { emojis, addEmoji } = useContext(EmojiContext); 
+    const [selectedEmoji, setSelectedEmoji] = useState(null);
+    const recentEmojis = emojis.slice(0, 3);
 
+
+    const handleEmojiClick = (emojiData) => {
+        const emoji = emojiData.emoji;
+        setSelectedEmoji(emoji);
+        addEmoji(emoji);
+    };
     return (
-        <div>
-        <button onClick={() => setShowPicker((v) => !v)}>
-            <img src={addBtn} alt="추가 버튼" />
-        </button>
-
-        {showPicker && (
-            <div>
-            <EmojiPicker onEmojiClick={(e) => addEmoji(e.emoji)} />
-            </div>
-        )}
-        <EmojiContainer emojis={emojis} />
+        <div className={styles.wrap}>
+            <EmojiContainer  recentEmojis={recentEmojis} selectedEmoji={selectedEmoji} />
+            {showPicker && (
+                <div>
+                    <EmojiPicker onEmojiClick={handleEmojiClick} />
+                </div>
+            )}
+                <button className={styles.add}
+                    onClick={() => setShowPicker((v) => !v)}>
+                    <img src={ic_smile} alt="추가 버튼" /> 추가
+                </button>
+                
         </div>
     );
 }
