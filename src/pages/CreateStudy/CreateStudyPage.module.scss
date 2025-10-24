@@ -3,17 +3,7 @@
 .wrap {
     @include v.flexCenter;
     gap: 0.625rem;
-        & input{
-        width: 40.5rem;
-        height: 3rem;
-        border-radius: 0.9375rem;
-        padding: 1.25rem;
-        border: 1px solid var(--gray-gray_DDDDDD, #DDD);
-        background: #FFF;
-        &:last-of-type{
-        margin-bottom: 2.5rem;
-        }
-    }
+
     & form{    
         border-radius: 1.25rem;
         background: #FFF;
@@ -22,14 +12,13 @@
         align-items: flex-start;
         gap: 1rem;
     }
+        &:last-of-type{
+        margin-bottom: 2.5rem;
+    }
 }
 
 .title{
     @include v.fonts(v.$FStitle, v.$FWtitle,v.$Ctext);
-}
-
-.label{
-    @include v.fonts(v.$FSsubtitle, v.$FWbase,v.$Ctext);
 }
 
 .create{
@@ -39,4 +28,3 @@
     align-self: center;
     padding: 0.625rem;
 }
-
