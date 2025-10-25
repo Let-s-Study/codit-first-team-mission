@@ -26,11 +26,14 @@
     color: #333;
     line-height: 1.4;
   }
-
+  strong {
+    font-weight: 700;
+    color: #c77777;
+  }
   h3 {
     margin: 0.4rem 0;
     font-size: 1.1rem;
-    font-weight: 700;
+    font-weight: 500;
   }
 
   p {
@@ -115,9 +118,10 @@
   background-color: rgba(0, 0, 0, 0.4);
   color: #fff;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   max-width: 55px;
   height: 24px;
+  padding: 0.4375rem;
 
   font-family: Pretendard;
   font-weight: 400;
@@ -155,4 +159,8 @@
 }
 .blue {
   background-color: #e6f3f9;
+}
+
+.default {
+  background-color: rgb(240, 240, 113);
 }

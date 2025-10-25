@@ -1,6 +1,17 @@
 import style from './CreateStudyPage.module.scss'
 import { BackgroundSelect } from './BackgroundSelect.jsx'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import {
+    validateNickName,
+    validateTitle,
+    validateDescription,
+    validateBackgroundId,
+    validatePassword,
+    validatePasswordCheck,
+    validateAll,
+    } from './vaildators/vaildators'
+import { InputSection } from './InputSection'
+import apiClient from "@/api/client";
 
 import sampleImg1 from '@/assets/samples/sample_img.jpg'
 import sampleImg2 from '@/assets/samples/sample_img2.jpg'
@@ -18,58 +29,10 @@ const ITEMS = [
     { id: "i4", type: "img", value: sampleImg4 },
     ];
 
-
 export function CreateStudyPage(){
-    const [errors, setErrors] = useState({});
-    //   const navigate = useNavigate();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [serverError, setServerError] = useState("");
 
-    const validateName = (value) => {
-        if (value.length < 2 || value.length > 10) {
-        setErrors((prev) => ({
-            ...prev,
-            name: "2자 이상 10자 이내로 입력해주세요",
-        }));
-        } else {
-        setErrors((prev) => ({ ...prev, name: undefined }));
-        }
-    };
-
-    const validateDescription = (value) => {
-        if (value.length < 10) {
-        setErrors((prev) => ({
-            ...prev,
-            description: "10자 이상 입력해주세요.",
-        }));
-        } else {
-        setErrors((prev) => ({ ...prev, description: undefined }));
-        }
-    };
-
-    const vaildPassword = (value) => {
-        if (!/^\d+$/.test(value)) {
-        setErrors((prev) => ({ ...prev, price: "숫자로 입력해주세요." }));
-        } else {
-        setErrors((prev) => ({ ...prev, price: undefined }));
-        }
-    };
-
-    const handleBgChange = (id) => {
-        setValues((prev) => ({...prev, backgroundId: id }));
-    };
-
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        console.log(values);
-    }
-
-        const handleValue = (e) => {
-        const {name, value} = e.target;
-        setValues((prev) => ({
-            ...prev,
-            [name] : value,
-        }))
-    }
-    
     const [values, setValues] = useState ({
         nickName: '',
         title:'',
@@ -78,82 +41,116 @@ export function CreateStudyPage(){
         password:'',
         passwordCheck:'',
     });
-//     try {
-//       const result = await addProduct(values); // API 호출
-//       console.log("상품 등록 성공:", result);
-//       navigate(`/items/${result.id}`);
-//     } catch (error) {
-//       console.error("상품 등록 실패:", error);
-//     }
-//   };
+    const [errors, setErrors] = useState({});
+    const setField = (name, value) => {
+            setValues((prev) => ({ ...prev, [name]: value }));
+        };
+
+    const handleValue = (e) => {
+        const { name, value } = e.target;
+        setField(name, value);
+        let msg = "";
+            if (name === "nickName") msg = validateNickName(value);
+            if (name === "title") msg = validateTitle(value);
+            if (name === "description") msg = validateDescription(value);
+            if (name === "password") msg = validatePassword(value);
+            if (name === "passwordCheck") msg = validatePasswordCheck(values.password, value);
+        setErrors((prev) => ({ ...prev, [name]: msg }));
+    };
+
+    const handleBgChange = (id) => {
+        setField("backgroundId", id);
+        const msg = validateBackgroundId(id);
+        setErrors((prev) => ({ ...prev, backgroundId: msg }));
+    };
+
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    const nextErrors = validateAll(values);
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length) return;
+
+    setIsSubmitting(true);
+    setServerError("");
+
+    try {
+        console.log("[POST] values:", values);
+
+        // ✅ axios는 fetch가 아니라 post 메서드 사용
+        const res = await apiClient.post("/studies", values);
+
+        console.log("[POST] response:", res.status, res.data);
+        // 성공 시
+        const created = res.data;
+        alert("스터디가 성공적으로 만들어졌어요!");
+        window.location.href = "/detail/" + created.id;
+
+    } catch (err) {
+        console.error("[POST] error:", err);
+        // 서버가 보낸 에러메시지 접근 방법
+        const msg =
+        err.response && err.response.data && err.response.data.error
+            ? err.response.data.error
+            : "서버 오류가 발생했습니다.";
+        alert(msg);
+    } finally {
+        setIsSubmitting(false);
+    }
+    };
     return (
         <div className={style.wrap}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} noValidate>
             <h1 className={style.title}>스터디 만들기</h1>
-            <label htmlFor="nickName" className={style.label}>닉네임</label>
-            <input
-                name="nickName" 
-                value={values.nickName} 
-                onChange={(e)=>{
-                    handleValue(e);
-                    validateName(e.target.value);
-                }}
-                placeholder='닉네임을 입력해 주세요'
-                error={errors.name} // 에러 메시지 전달 
+            <InputSection
+                label="닉네임"
+                name="nickName"
+                value={values.nickName}
+                onChange={handleValue}
+                placeholder="닉네임을 입력해 주세요"
+                error={errors.nickName}
             />
-            <label htmlFor="title" className={style.label}>스터디 이름</label>
-            <input
-                name="title" 
-                value={values.title} 
-                onChange={(e)=>{
-                    handleValue(e)
-                    validateName(e.target.value);
-                }}
-                placeholder='스터디 이름을 입력해 주세요'
-                error={errors.name} // 에러 메시지 전달
+            <InputSection
+                label="스터디 이름"
+                name="title"
+                value={values.title}
+                onChange={handleValue}
+                placeholder="스터디 이름을 입력해 주세요"
+                error={errors.title}
             />
-            <label htmlFor="description" className={style.label}>소개</label>
-            <input
-                name="description" 
-                value={values.description} 
-                onChange={(e)=>{
-                    handleValue(e)
-                    validateDescription(e.target.value);
-                }}
-                placeholder='소개 멘트를 작성해 주세요'
-                error={errors.name} // 에러 메시지 전달
+            <InputSection
+                label="소개"            
+                name="description"
+                value={values.description}
+                onChange={handleValue}
+                placeholder="소개 멘트를 작성해 주세요"
+                error={errors.description}
+                isTextArea
             />
-
-            <label htmlFor="background" className={style.label}>배경을 선택해주세요</label>
-            <BackgroundSelect 
+            <BackgroundSelect
+                label="배경선택"
                 items={ITEMS}
-                value={values.backgroundId} 
+                value={values.backgroundId}
                 onChange={handleBgChange}
-                error={errors.name} // 에러 메시지 전달
+                error={errors.backgroundId}
             />
-            <label htmlFor="password"className={style.label}>비밀번호</label>
-            <input 
-                name="password" 
-                value={values.password} 
-                onChange={(e)=>{
-                    handleValue(e);
-                    vaildPassword(e.target.value);
-                }}
-                placeholder='비밀번호를 입력해 주세요'
-                error={errors.name} // 에러 메시지 전달
+            <InputSection
+                label="비밀번호"  
+                name="password"
+                value={values.password}
+                onChange={handleValue}
+                placeholder="비밀번호를 입력해 주세요"
+                error={errors.password}
             />
-            <label htmlFor="passwordCheck"className={style.label}>비밀번호</label>
-            <input
-                name="passwordCheck" 
-                value={values.passwordCheck} 
-                onChange={(e)=>{
-                    handleValue
-                    vaildPasswordCheck(e.target.value);
-                }}
-                placeholder='비밀번호를 다시 한 번 입력해 주세요'
-                error={errors.name} // 에러 메시지 전달            
-                />
-                <button className={style.create}>만들기</button>
+            <InputSection
+                label="비밀번호 확인"
+                name="passwordCheck"
+                type="password"
+                value={values.passwordCheck}
+                onChange={handleValue}
+                placeholder="비밀번호를 다시 한 번 입력해 주세요"
+                error={errors.passwordCheck}
+            />
+            <button type='submit' className={style.create}>만들기</button>
         </form>
         </div>
     );
