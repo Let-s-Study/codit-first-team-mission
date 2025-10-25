@@ -1,10 +1,10 @@
-import styles from './HabitDetail.module.scss';
-import trashImg from '@/assets/img/btn_determinate.png';
+import styles from "./HabitDetail.module.scss";
+import trashImg from "@/assets/img/btn_determinate.png";
 
 export function HabitDetail({ todo, onClick, showDelete = false, onDelete }) {
   return (
     <li
-      className={`${styles.todoItem} ${todo.isDone ? styles.activeBackground : ''}`}
+      className={`${styles.todoItem} ${todo.isDone ? styles.activeBackground : ""}`}
       onClick={() => {
         if (onClick) onClick(todo.id);
       }}
@@ -18,10 +18,11 @@ export function HabitDetail({ todo, onClick, showDelete = false, onDelete }) {
             className={styles.trashBtn}
             onClick={(e) => {
               e.stopPropagation();
-              onDelete(todo.id)
-            }} />
+              onDelete(todo.id);
+            }}
+          />
         )}
       </div>
     </li>
-  )
+  );
 }
