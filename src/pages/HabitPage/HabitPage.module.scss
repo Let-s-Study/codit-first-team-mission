@@ -1,8 +1,7 @@
-@use '@/styles/global.scss' as *;
+@use '@/styles/global.scss' as v;
 
 .mainContainer {
   display: flex;
-  
 }
 
 .appContainer {
@@ -48,7 +47,7 @@
 
 
 .listSection {
-  @include flexCenter;
+  @include v.flexCenter;
   margin-top: 20px;
   flex-direction: column;
 }
@@ -93,7 +92,7 @@
 }
 
 
-@include tablet {
+@include v.tablet {
   .mainContainer {
     padding: 30px;
   }
@@ -107,7 +106,7 @@
   }
 }
 
-@include mobile {
+@include v.mobile {
   .mainContainer {
     margin: 0;
   }

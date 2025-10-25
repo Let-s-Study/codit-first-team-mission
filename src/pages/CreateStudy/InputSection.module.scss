@@ -1,0 +1,31 @@
+@use '@/styles/global.scss' as v;
+
+.inputSection{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+        & input, & textarea{
+            width: 40.5rem;
+            border-radius: 0.9375rem;
+            padding: 1.25rem;
+            border: 1px solid var(--gray-gray_DDDDDD, #DDD);
+            font-family: v.$FFbase;
+        }
+        & input{
+        height: 3rem;
+        background: #FFF;}
+        & textarea {
+            height: 6.25rem;
+
+        }
+}
+
+label{
+    @include v.fonts(v.$FSsubtitle, v.$FWbase,v.$Ctext);
+}
+.error{
+    @include v.fonts(v.$FSsubtext, v.$FWsubtext,v.$Cerror);
+
+}
+

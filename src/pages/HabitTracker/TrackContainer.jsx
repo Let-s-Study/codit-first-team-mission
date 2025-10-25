@@ -53,7 +53,6 @@ export function TrackContainer() {
         </div>
         );
     }
-    // 정상 렌더
     return (
         <HabitTracker
         habits={habits}
