@@ -73,9 +73,9 @@ export function HomePage() {
     }
   };
 
-  const recentStudies = recentIds
-    .map((id) => studies.find((study) => study.id === id))
-    .filter(Boolean);
+    const recentStudies = recentIds
+        .map((id) => studies.find((study) => study.id === id))
+        .filter(Boolean);
 
   return (
     <div className={styles.homeWrap}>
@@ -86,13 +86,13 @@ export function HomePage() {
         />
       </section>
 
-      <section className={styles.homeSection}>
-        <StudyListSection
-          studies={studies}
-          onStudyClick={handleStudySelect}
-          onReactionUpdate={handleReactionUpdate}
-        />
-      </section>
-    </div>
-  );
+        <section className={styles.homeSection}>
+            <StudyListSection
+            studies={studies}
+            onStudyClick={handleStudySelect}
+            onReactionUpdate={handleReactionUpdate}
+            />
+        </section>
+        </div>
+    );
 }
