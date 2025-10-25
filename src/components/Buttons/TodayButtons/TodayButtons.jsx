@@ -64,7 +64,7 @@ export function TodayButtons({ value }) {
 
   return (
     <>
-      <div className={styles.menuContainer}>{currentButtons}</div>;
+      <div className={styles.menuContainer}>{currentButtons}</div>
       {isModalOpen && (
         <PasswordModal
           isOpen={isModalOpen}

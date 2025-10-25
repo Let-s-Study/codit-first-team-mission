@@ -1,16 +1,16 @@
-// import { HabitTracker } from '../HabitTracker/HabitTracker';
-import { SelectEmojis } from './SelectEmojis';
+// import { HabitTracker } from '../HabitTracker/HabitTracker'
+import { SelectEmojis } from './SelectEmojis'
 import { TrackContainer } from '../HabitTracker/TrackContainer' 
-import { TodayButtons } from '@/components/Buttons/TodayButtons/TodayButtons';
-import { EarnedPoints } from '@/components/Points/EarnedPoints';
-import { EmojiProvider } from '@/context/EmojiContext';
-import { AuthStudyContents } from '@/components/Modal/Contents/AuthStudyContents';
-import { Modal } from '@/components/Modal/Modal';
+import { TodayButtons } from '@/components/Buttons/TodayButtons/TodayButtons'
+import { EarnedPoints } from '@/components/Points/EarnedPoints'
+import { EmojiProvider } from '@/context/EmojiContext'
+import { AuthStudyContents } from '@/components/Modal/Contents/AuthStudyContents'
+import { Modal } from '@/components/Modal/Modal'
 import { useState } from 'react'
-import style from './StudyDetailPage.module.scss';
+import style from './StudyDetailPage.module.scss'
 
 export function StudyDetailPage () {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false)
 
     return(
     <div className={style.wrap}>
@@ -46,5 +46,5 @@ export function StudyDetailPage () {
             <TrackContainer/>
         </div>
     </div>
-    );
+    )
 }
