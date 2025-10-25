@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { RecentStudySection } from "./components/RecentStudy/RecentStudySection";
 import { StudyListSection } from "./components/StudyList/StudyListSection";
 import styles from "./HomePage.module.scss";
-// import { studyList } from "./studyData.js"; 목업 일단 제외!
 import apiClient from "@/api/client";
 
 const RECENT_LIMIT = 3;
