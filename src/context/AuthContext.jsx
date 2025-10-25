@@ -1,5 +1,5 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
-import { loginStudy } from "../api/study";
+import { createContext, useState, useEffect, useContext } from "react";
+import { loginStudy } from "@/api/study";
 
 const AuthContext = createContext(null);
 
@@ -39,11 +39,10 @@ export const AuthProvider = ({ children, studyId }) => {
     handleVerifyStudyId,
     studyId,
   };
-
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export const useAuth = () => { // AuthProvider 안에서만 사용
+export const useAuth = () => {
   const context = useContext(AuthContext); 
   return context;
 };

@@ -1,6 +1,6 @@
 import style from './CreateStudyPage.module.scss'
 import { BackgroundSelect } from './BackgroundSelect.jsx'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import {
     validateNickName,
     validateTitle,
@@ -9,10 +9,12 @@ import {
     validatePassword,
     validatePasswordCheck,
     validateAll,
-    } from './vaildators/vaildators'
+    } from './validators/validators'
 import { InputSection } from './InputSection'
 import apiClient from "@/api/client";
+import { useNavigate } from 'react-router-dom';
 
+console.info("[api] baseURL =", apiClient.defaults.baseURL);
 import sampleImg1 from '@/assets/samples/sample_img.jpg'
 import sampleImg2 from '@/assets/samples/sample_img2.jpg'
 import sampleImg3 from '@/assets/samples/sample_img3.jpg'
@@ -30,6 +32,7 @@ const ITEMS = [
     ];
 
 export function CreateStudyPage(){
+    const navigate = useNavigate();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [serverError, setServerError] = useState("");
 
@@ -75,19 +78,13 @@ const handleSubmit = async (e) => {
 
     try {
         console.log("[POST] values:", values);
-
-        // ✅ axios는 fetch가 아니라 post 메서드 사용
         const res = await apiClient.post("/studies", values);
-
         console.log("[POST] response:", res.status, res.data);
-        // 성공 시
         const created = res.data;
         alert("스터디가 성공적으로 만들어졌어요!");
-        window.location.href = "/detail/" + created.id;
-
+        navigate(`/study/${created.id}`);
     } catch (err) {
         console.error("[POST] error:", err);
-        // 서버가 보낸 에러메시지 접근 방법
         const msg =
         err.response && err.response.data && err.response.data.error
             ? err.response.data.error

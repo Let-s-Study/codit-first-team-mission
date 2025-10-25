@@ -1,33 +1,39 @@
 import { useEffect, useState } from "react";
 import { InputSection } from "@/pages/CreateStudy/InputSection";
-import { validatePassword } from "@/pages/CreateStudy/vaildators/vaildators";
-import * as mock from "@/api/mock.js";
+import { validatePassword } from "@/pages/CreateStudy/validators/validators";
+import apiClient from "@/api/client";
 
 export function AuthStudyContents({ studyId, onAuthed }) {
     const [study, setStudy] = useState(null);
     const [loading, setLoading] = useState(true);
     const [value, setvalue] = useState({ password: "" });
-    const [errors, setErrors] = useState({}); // { password?: string, server?: string }
+    const [errors, setErrors] = useState({}); 
 
-    useEffect(function () {
-        var canceled = false;
-        (async function () {
+    useEffect(() => {
+        let canceled = false;
+
+        (async function fetchStudy() {
         try {
-            const data = await mock.getStudy(studyId);
+            const { data } = await apiClient.get(`/studies/${studyId}`);
             if (!canceled) {
             setStudy(data);
-            setLoading(false);
             }
-        } catch (_e) {
+        } catch (error) {
             if (!canceled) {
+            console.error(error);
             setStudy(null);
+            }
+        } finally {
+            if (!canceled) {
             setLoading(false);
             }
         }
         })();
-        return function () { canceled = true; };
+        
+        return () => {
+        canceled = true;
+        };
     }, [studyId]);
-
 
     function handleChange(e) {
         var v = e && e.target && typeof e.target.value === "string" ? e.target.value : "";

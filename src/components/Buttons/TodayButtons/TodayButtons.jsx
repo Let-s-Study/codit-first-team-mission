@@ -3,7 +3,7 @@ import arrowRight from "@/assets/img/ic_arrow_right.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
-import PasswordModal from "../../Modal/PasswordModal/PasswordModal";
+import { PasswordModal } from "@/components/Modal/PasswordModal/PasswordModal";
 
 export function TodayButtons({ value }) {
   const navigate = useNavigate();
