@@ -2,7 +2,6 @@ import styles from './BackgroundSelect.module.scss'
 import selectedBg from '@/assets/ic_bg_selected.png'
 
 export function BackgroundSelect(props){
-    console.log(props);
     const items   = Array.isArray(props.items) ? props.items : [];
     const selectedId = typeof props.value === "string" ? props.value : "";
     const onChange = props.onChange;

@@ -23,6 +23,7 @@ $Cborder: #e5e5e5;
 $Ctext: #414141;
 $Csubtext: #818181;
 $Cbtn: #99c08e;
+$Cerror: #C41013;
 
 $FFbase: 'Pretendard', sans-serif;
 $FFbtn:'JejuStoneWall', sans-serif;
@@ -109,9 +110,7 @@ a {
     }
     @include mobile {
       & {
-                border-radius: 0.5rem;
-        width: 6.25rem;
-        height: 2.375rem;
+  
         font-size: 0.625rem;
         text-shadow: -0.08px -1px #578246 ;
       }
