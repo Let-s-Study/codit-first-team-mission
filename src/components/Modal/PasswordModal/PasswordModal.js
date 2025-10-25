@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../../context/AuthContext";
 import { Modal } from "../Modal";
 import styles from "./PasswordModal.module.scss";
 
