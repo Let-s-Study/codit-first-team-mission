@@ -3,9 +3,12 @@ import PauseIcon from "@/assets/btn_pause.png";
 import PlayIcon from "@/assets/ic_play.png";
 import StopIcon from "@/assets/ic_stop.png";
 import RestartIcon from "@/assets/btn_restart.png";
+import { addPointsToStudy } from "@/api/study";
+import { useAuth } from "@/context/AuthContext";
 import Style from "./timer.module.scss";
 
-export function Timer() {
+export function Timer({ study }) {
+  const { fetchStudyData } = useAuth();
   const [initialTime, setInitialTime] = useState(30 * 60);
   const [secondsLeft, setSecondsLeft] = useState(initialTime);
   const [isRunning, setIsRunning] = useState(false);
@@ -80,12 +83,21 @@ export function Timer() {
     setPauseToast(true);
     // 타이머 정지
   };
-  const handleStop = () => {
+  const handleStop = async () => {
     //집중 완료
     setIsRunning(false);
     setFinishToast(true);
     setSecondsLeft(initialTime);
     setTimerStart(false);
+    if (study?.id && calPoint > 0) {
+      try {
+        await addPointsToStudy(study.id, calPoint);
+        await fetchStudyData(study.id);
+      } catch (error) {
+        console.error("포인트 적립 API 호출 실패:", error);
+        alert(error.message);
+      }
+    }
   };
   const handleReset = () => {
     setIsRunning(false);
@@ -94,7 +106,7 @@ export function Timer() {
     setTimerStart(false);
     //타이머 초기화
   };
-  const calPoint = 3 + parseInt(initialTime / 10);
+  const calPoint = 3 + Math.floor(initialTime / 600);
 
   const isMinus = secondsLeft < 0;
   return (
