@@ -101,7 +101,7 @@ export function HabitPage({ onDelete , habit , study}) {
                 <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
                   <ModalContents
                     habits={habits}
-                    onSave={setTodos}            {/* ← 기존 prop 유지 */}
+                    onSave={setTodos}          
                     onClose={() => setIsOpen(false)} />
                 </Modal>
               {habits.length === 0 ? (
