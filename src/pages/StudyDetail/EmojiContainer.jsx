@@ -1,11 +1,11 @@
-import { useState, useContext } from "react";
-import { EmojiContext } from "@/context/EmojiContext";
-import style from './EmojiContainer.module.scss';
-import plus from '@/assets/ic_plus.svg';
+import { useState, useContext } from "react"
+import { EmojiContext } from "@/context/EmojiContext"
+import style from './EmojiContainer.module.scss'
+import plus from '@/assets/ic_plus.svg'
 
 export const EmojiContainer = ({ recentEmojis }) => {
-    const [showContainer, setShowContainer ] = useState(false);
-    const { emojis } = useContext(EmojiContext);
+    const [showContainer, setShowContainer ] = useState(false)
+    const { emojis } = useContext(EmojiContext)
 
     return (
         <div className={style.emojiWrapper}>
@@ -34,5 +34,5 @@ export const EmojiContainer = ({ recentEmojis }) => {
                 </div>
             )}
         </div>
-    );
-};
+    )
+}

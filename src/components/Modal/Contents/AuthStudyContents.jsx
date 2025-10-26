@@ -1,77 +1,83 @@
-import { useEffect, useState } from "react";
-import { InputSection } from "@/pages/CreateStudy/InputSection";
-import { validatePassword } from "@/pages/CreateStudy/vaildators/vaildators";
-import * as mock from "@/api/mock.js";
+import { useEffect, useState } from "react"
+import { InputSection } from "@/pages/CreateStudy/InputSection"
+import { validatePassword } from "@/pages/CreateStudy/validators/validators"
+import apiClient from "@/api/client"
 
 export function AuthStudyContents({ studyId, onAuthed }) {
-    const [study, setStudy] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [value, setvalue] = useState({ password: "" });
-    const [errors, setErrors] = useState({}); // { password?: string, server?: string }
+    const [study, setStudy] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [value, setvalue] = useState({ password: "" })
+    const [errors, setErrors] = useState({}) 
 
-    useEffect(function () {
-        var canceled = false;
-        (async function () {
+    useEffect(() => {
+        let canceled = false
+
+        (async function fetchStudy() {
         try {
-            const data = await mock.getStudy(studyId);
+            const { data } = await apiClient.get(`/studies/${studyId}`)
             if (!canceled) {
-            setStudy(data);
-            setLoading(false);
+            setStudy(data)
             }
-        } catch (_e) {
+        } catch (error) {
             if (!canceled) {
-            setStudy(null);
-            setLoading(false);
+            console.error(error)
+            setStudy(null)
+            }
+        } finally {
+            if (!canceled) {
+            setLoading(false)
             }
         }
-        })();
-        return function () { canceled = true; };
-    }, [studyId]);
-
+        })()
+        
+        return () => {
+        canceled = true
+        }
+    }, [studyId])
 
     function handleChange(e) {
-        var v = e && e.target && typeof e.target.value === "string" ? e.target.value : "";
-        setvalue({ password: v });
+        var v = e && e.target && typeof e.target.value === "string" ? e.target.value : ""
+        setvalue({ password: v })
     }
 
     async function handleSubmit(e) {
-        e.preventDefault();
+        e.preventDefault()
 
-        var msg = validatePassword(value.password);
+        var msg = validatePassword(value.password)
         if (msg) {
-        setErrors({ password: msg });
-        return;
+        setErrors({ password: msg })
+        return
         }
 
-        setErrors({});
+        setErrors({})
         const res = await fetch("@/api/study/" + studyId + "/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ password: value.password }),
-        });
+        })
 
         if (!res.ok) {
-        var data = {};
-        try { data = await res.json(); } catch (_e) { data = {}; }
-        var serverMsg = data && typeof data.error === "string" ? data.error : "인증 실패";
-        setErrors({ server: serverMsg });
-        return;
+        var data = {}
+        try { data = await res.json() } catch (_e) { data = {} }
+        var serverMsg = data && typeof data.error === "string" ? data.error : "인증 실패"
+        setErrors({ server: serverMsg })
+        return
         }
 
         if (typeof onAuthed === "function") {
-        onAuthed();
+        onAuthed()
         }
     }
 
-    if (loading) return <p>로딩 중...</p>;
-    if (!study) return <p>스터디를 찾을 수 없습니다.</p>;
+    if (loading) return <p>로딩 중...</p>
+    if (!study) return <p>스터디를 찾을 수 없습니다.</p>
 
     return (
         <div>
         <header>
             <h1>{study && typeof study.title === "string" ? study.title : ""}</h1>
-            <button type="button" onClick={function(){ history.back(); }}>나가기</button>
+            <button type="button" onClick={function(){ history.back() }}>나가기</button>
             <p>권한이 필요해요!</p>
         </header>
 
@@ -89,5 +95,5 @@ export function AuthStudyContents({ studyId, onAuthed }) {
             <button type="submit">확인</button>
         </form>
         </div>
-    );
+    )
 }

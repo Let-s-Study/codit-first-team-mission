@@ -17,7 +17,7 @@ function StudySpecificLayout() {
   const { studyId } = useParams();
   if (!studyId) {
     // studyId가 유효하지 않은경우 어떻게 할지
-    return <div> 잘못된 접근입니다 </div>;
+    return <div> 잘못된 접근입니다 </div>
   }
   return (
     <AuthProvider studyId={studyId}>
