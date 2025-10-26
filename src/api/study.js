@@ -1,45 +1,42 @@
-const BASE_URL = "/api/studies";
+import apiClient from "./client";
+const BASE_URL = "/studies";
 
 export const loginStudy = async (studyId, password) => {
   const API_ENDPOINT = `${BASE_URL}/${studyId}/verify`;
 
-  const response = await fetch(API_ENDPOINT, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify({ password }),
-  });
-  const result = await response.json();
-
-  if (!response.ok) {
-    throw new Error(result.message || "로그인에 실패했습니다");
+  try {
+    await apiClient.post(API_ENDPOINT, { password });
+    return true;
+  } catch (error) {
+    console.error("로그인API 에러", error);
+    throw new Error(error.response?.data?.message || "로그인에 실패했습니다");
   }
-  return true;
 };
 
 export const addPointsToStudy = async (studyId, amount) => {
   const API_ENDPOINT = `${BASE_URL}/${studyId}/points`;
   try {
-    const response = await fetch(API_ENDPOINT, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        amount: amount,
-      }),
-    });
-    const result = await response.json();
-    if (!response.ok || !result.success) {
-      if (response.status === 403) {
-        alert(" 다시 로그인해주세요");
-      }
-      throw new Error(result.message || "포인트 추가에 실패했습니다");
-    }
-    return result.data;
+    const response = await apiClient.patch(API_ENDPOINT, { amount });
+    return response.data.data;
   } catch (error) {
-    console.error("포인트 API 호출 오류", error);
-    throw error;
+    console.error("포인트 추가 API 에러", error);
+    if (error.response?.status === 403) {
+      alert("다시 로그인해주세요.");
+    }
+    throw new Error(
+      error.response?.data?.message || "포인트 추가에 실패했습니다."
+    );
+  }
+};
+
+export const getAllStudies = async () => {
+  try {
+    const response = await apiClient.get(BASE_URL);
+    return response.data.data;
+  } catch (error) {
+    console.error("모든 스터디 조회 API 에러", error);
+    throw new Error(
+      error.response?.data?.message || "스터디 목록을 불러오지 못했습니다."
+    );
   }
 };
