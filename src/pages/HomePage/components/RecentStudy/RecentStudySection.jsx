@@ -3,7 +3,11 @@ import { EmptyState } from "@/components/EmptyState/EmptyState";
 import { StudyCard } from "../StudyCard/StudyCard";
 import styles from "./RecentStudySection.module.scss";
 
-export function RecentStudySection({ studies = [], onReactionUpdate }) {
+export function RecentStudySection({
+  studies = [],
+  onStudyClick,
+  onReactionUpdate,
+}) {
   return (
     <section className={styles.recentStudy}>
       <h2>최근 조회한 스터디</h2>
@@ -15,6 +19,7 @@ export function RecentStudySection({ studies = [], onReactionUpdate }) {
             <StudyCard
               key={study.id}
               {...study}
+              onStudyClick={() => onStudyClick?.(study.id)}
               onReactionClick={onReactionUpdate}
             />
           ))}
@@ -23,3 +28,5 @@ export function RecentStudySection({ studies = [], onReactionUpdate }) {
     </section>
   );
 }
+
+export default RecentStudySection;
