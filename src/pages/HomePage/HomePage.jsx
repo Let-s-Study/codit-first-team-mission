@@ -1,98 +1,167 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { RecentStudySection } from "./components/RecentStudy/RecentStudySection";
 import { StudyListSection } from "./components/StudyList/StudyListSection";
 import styles from "./HomePage.module.scss";
-// import { studyList } from "./studyData.js"; 목업 일단 제외!
 import apiClient from "@/api/client";
 
 const RECENT_LIMIT = 3;
+const RECENT_KEY = "recentStudies_session";
 
 export function HomePage() {
-    const [studies, setStudies] = useState([]);
-    const [recentIds, setRecentIds] = useState([]);
+  const [studies, setStudies] = useState([]);
+  const [recentIds, setRecentIds] = useState([]);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchStudies = async () => {
-        try {
-            const res = await apiClient.get("/studies");
+  useEffect(() => {
+    const nav = performance.getEntriesByType?.("navigation")?.[0];
+    const isReload =
+      (nav && nav.type === "reload") ||
+      (performance?.navigation && performance.navigation.type === 1);
+    if (isReload) {
+      try {
+        sessionStorage.removeItem(RECENT_KEY);
+      } catch {}
+      setRecentIds([]);
+    }
+  }, []);
 
-            const mappedStudies = res.data.data.map((s) => ({
+  const loadRecentIds = () => {
+    try {
+      const raw = sessionStorage.getItem(RECENT_KEY) || "[]";
+      const arr = JSON.parse(raw);
+      if (Array.isArray(arr)) setRecentIds(arr.slice(0, RECENT_LIMIT));
+    } catch {
+      setRecentIds([]);
+    }
+  };
+
+  useEffect(() => {
+    async function fetchStudies() {
+      try {
+        const res = await apiClient.get("/studies");
+        const body = res?.data ?? null;
+
+        let list = null;
+        if (body && Array.isArray(body.data)) list = body.data;
+        else if (Array.isArray(body)) list = body;
+
+        if (!Array.isArray(list)) {
+          setStudies([]);
+          return;
+        }
+
+        const mapped = list.map((s) => {
+          const nicknameValue = s?.nickName
+            ? s.nickName
+            : s?.nickname
+              ? s.nickname
+              : "";
+          const createdAtValue = s?.createdAt || new Date().toISOString();
+          const emojis = Array.isArray(s?.emojis)
+            ? s.emojis.map((e) => ({
+                id: e.id,
+                emoji: e.emoji,
+                count: e.count,
+              }))
+            : [];
+          const dayMs = 1000 * 60 * 60 * 24;
+          const daysPassed = Math.floor(
+            (Date.now() - new Date(createdAtValue)) / dayMs
+          );
+
+          return {
             id: s.id,
-            nickname: s.nickname,
+            nickName: nicknameValue,
             title: s.title,
             description: s.description,
-            createdAt: s.createdAt,
-            points: s.totalPoint,
+            createdAt: createdAtValue,
+            points: typeof s?.totalPoint === "number" ? s.totalPoint : 0,
             color: s.background,
-            days: Math.floor(
-                (Date.now() - new Date(s.createdAt)) / (1000 * 60 * 60 * 24)
-            ),
-            emojis: Array.isArray(s.emojis)
-                ? s.emojis.map((e) => ({
-                    id: e.id,
-                    emoji: e.emoji,
-                    count: e.count,
-                }))
-                : [],
-            }));
+            days: daysPassed,
+            emojis,
+          };
+        });
 
-            setStudies(mappedStudies);
-        } catch (error) {
-            console.error("스터디 불러오기 실패!!:", error);
-        }
-        };
+        setStudies(mapped);
+      } catch (error) {
+        console.error("스터디 불러오기 실패:", error);
+        setStudies([]);
+      }
+    }
 
-        fetchStudies();
-    }, []);
+    fetchStudies();
+    loadRecentIds();
+  }, []);
 
-    const handleStudySelect = (id) => {
-        setRecentIds((prev) =>
-        [id, ...prev.filter((v) => v !== id)].slice(0, RECENT_LIMIT)
-        );
-    };
-
-    const handleReactionUpdate = async (studyId, emojiId) => {
-        try {
-        await apiClient.patch(`/emojis/${emojiId}/increment`);
-        setStudies((prev) =>
-            prev.map((study) =>
-            study.id === studyId
-                ? {
-                    ...study,
-                    emojis: study.emojis.map((emoji) =>
-                    emoji.id === emojiId
-                        ? { ...emoji, count: emoji.count + 1 }
-                        : emoji
-                    ),
-                }
-                : study
-            )
-        );
-        } catch (error) {
-        console.error("이모지 업데이트 실패!!:", error);
-        }
-    };
-
-    const recentStudies = recentIds
-        .map((id) => studies.find((study) => study.id === id))
-        .filter(Boolean);
-
-    return (
-        <div className={styles.homeWrap}>
-        <section className={styles.homeSection}>
-            <RecentStudySection
-            studies={recentStudies}
-            onReactionUpdate={handleReactionUpdate}
-            />
-        </section>
-
-        <section className={styles.homeSection}>
-            <StudyListSection
-            studies={studies}
-            onStudyClick={handleStudySelect}
-            onReactionUpdate={handleReactionUpdate}
-            />
-        </section>
-        </div>
+  const pushRecent = (id) => {
+    setRecentIds((prev) =>
+      [id, ...prev.filter((v) => v !== id)].slice(0, RECENT_LIMIT)
     );
+    try {
+      const raw = sessionStorage.getItem(RECENT_KEY) || "[]";
+      const arr = Array.isArray(JSON.parse(raw)) ? JSON.parse(raw) : [];
+      const next = [id, ...arr.filter((v) => v !== id)].slice(0, RECENT_LIMIT);
+      sessionStorage.setItem(RECENT_KEY, JSON.stringify(next));
+    } catch {}
+  };
+
+  function handleStudySelectSilent(payload) {
+    const id = typeof payload === "string" ? payload : payload?.id;
+    if (!id) return;
+    pushRecent(id);
+  }
+
+  function handleStudySelectNavigate(payload) {
+    const id = typeof payload === "string" ? payload : payload?.id;
+    if (!id) return;
+    pushRecent(id);
+    navigate(`/study/${id}/detail`);
+  }
+
+  const recentStudies = recentIds
+    .map((id) => studies.find((s) => s.id === id))
+    .filter(Boolean);
+
+  return (
+    <div className={styles.homeWrap}>
+      <section className={styles.homeSection}>
+        <RecentStudySection
+          studies={recentStudies}
+          onStudyClick={handleStudySelectNavigate}
+          onReactionUpdate={() => {}}
+        />
+      </section>
+      <section className={styles.homeSection}>
+        <StudyListSection
+          studies={studies}
+          onStudyClick={handleStudySelectSilent}
+          onReactionUpdate={async (studyId, emojiId) => {
+            try {
+              await apiClient.patch(`/emojis/${emojiId}/increment`);
+              setStudies((prev) =>
+                prev.map((study) => {
+                  if (study.id !== studyId) return study;
+                  const nextEmojis = study.emojis.map((emoji) =>
+                    emoji.id === emojiId
+                      ? {
+                          id: emoji.id,
+                          emoji: emoji.emoji,
+                          count: emoji.count + 1,
+                        }
+                      : emoji
+                  );
+                  return { ...study, emojis: nextEmojis };
+                })
+              );
+            } catch (error) {
+              console.error("이모지 업데이트 실패:", error);
+            }
+          }}
+        />
+      </section>
+    </div>
+  );
 }
+
+export default HomePage;

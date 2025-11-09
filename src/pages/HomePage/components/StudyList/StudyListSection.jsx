@@ -5,7 +5,11 @@ import { CustomSelect } from "./CustomSelect/CustomSelect";
 import { CiSearch } from "react-icons/ci";
 import styles from "./StudyListSection.module.scss";
 
-export function StudyListSection({ studies, onStudyClick, onReactionUpdate }) {
+export function StudyListSection({
+  studies = [],
+  onStudyClick,
+  onReactionUpdate,
+}) {
   const [searchText, setSearchText] = useState("");
   const [sortType, setSortType] = useState("recent");
   const [visibleCount, setVisibleCount] = useState(6);
@@ -15,21 +19,20 @@ export function StudyListSection({ studies, onStudyClick, onReactionUpdate }) {
   const handleLoadMore = () => setVisibleCount((prev) => prev + 3);
 
   const filtered = studies.filter((study) => {
-    const text = searchText.toLowerCase();
-    return (
-      study.title.toLowerCase().includes(text) ||
-      study.description.toLowerCase().includes(text)
-    );
+    const text = (searchText || "").toLowerCase();
+    const title = (study?.title || "").toLowerCase();
+    const desc = (study?.description || "").toLowerCase();
+    return title.includes(text) || desc.includes(text);
   });
 
   const sorted = [...filtered].sort((a, b) => {
-    const dateA = new Date(a.createdAt);
-    const dateB = new Date(b.createdAt);
+    const dateA = a?.createdAt ? new Date(a.createdAt).getTime() : 0;
+    const dateB = b?.createdAt ? new Date(b.createdAt).getTime() : 0;
 
     if (sortType === "recent") return dateB - dateA;
     if (sortType === "old") return dateA - dateB;
-    if (sortType === "highPoints") return b.points - a.points;
-    if (sortType === "lowPoints") return a.points - b.points;
+    if (sortType === "highPoints") return (b?.points ?? 0) - (a?.points ?? 0);
+    if (sortType === "lowPoints") return (a?.points ?? 0) - (b?.points ?? 0);
     return 0;
   });
 
@@ -63,7 +66,7 @@ export function StudyListSection({ studies, onStudyClick, onReactionUpdate }) {
             <StudyCard
               key={study.id}
               {...study}
-              onClick={() => onStudyClick(study.id)}
+              onStudyClick={() => onStudyClick?.(study.id)}
               onReactionClick={onReactionUpdate}
             />
           ))}
@@ -80,3 +83,5 @@ export function StudyListSection({ studies, onStudyClick, onReactionUpdate }) {
     </section>
   );
 }
+
+export default StudyListSection;

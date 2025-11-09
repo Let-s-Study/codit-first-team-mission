@@ -1,75 +1,86 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import PauseIcon from "@/assets/btn_pause.png";
 import PlayIcon from "@/assets/ic_play.png";
 import StopIcon from "@/assets/ic_stop.png";
 import RestartIcon from "@/assets/btn_restart.png";
-import Style from "./timer.module.scss";
+import Style from "./Timer.module.scss";
 
-export function Timer() {
-  const [initialTime, setInitialTime] = useState(30 * 60);
-  const [secondsLeft, setSecondsLeft] = useState(initialTime);
-  const [isRunning, setIsRunning] = useState(false);
+export function Timer({
+  initialSeconds = 30 * 60,
+  autoStart = false,
+  onComplete,
+  rewardPoint = 50,
+}) {
+  const [initialTime, setInitialTime] = useState(initialSeconds);
+  const [secondsLeft, setSecondsLeft] = useState(initialSeconds);
+  const [isRunning, setIsRunning] = useState(!!autoStart);
   const [isEditing, setIsEditing] = useState(false);
-  const [editMinutes, setEditMinutes] = useState(String(initialTime / 60));
+  const [editMinutes, setEditMinutes] = useState(String(initialSeconds / 60));
   const [editSeconds, setEditSeconds] = useState("00");
   const [pauseToast, setPauseToast] = useState(false);
   const [finishToast, setFinishToast] = useState(false);
-  const [timerStart, setTimerStart] = useState(false);
+  const [timerStart, setTimerStart] = useState(!!autoStart);
+  const [finished, setFinished] = useState(false);
+  const elapsedRef = useRef(0);
+  const tickRef = useRef(null);
+  const completedRef = useRef(false);
 
   useEffect(() => {
-    let interval = null;
-    if (isRunning) {
-      interval = setInterval(() => {
-        setSecondsLeft((prev) => prev - 1);
-      }, 1000);
-    }
-    return () => clearInterval(interval);
-  }, [isRunning, secondsLeft]);
+    if (!isRunning) return;
+    tickRef.current = setInterval(() => {
+      setSecondsLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(tickRef.current);
+          setIsRunning(false);
+          setFinishToast(true);
+          setTimerStart(false);
+          setFinished(true);
+          if (!completedRef.current) {
+            completedRef.current = true;
+            onComplete && onComplete(elapsedRef.current + 1);
+          }
+          return 0;
+        }
+        elapsedRef.current += 1;
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(tickRef.current);
+  }, [isRunning, onComplete]);
+
   const handleDisplayClick = () => {
-    if (!isRunning) {
-      setIsEditing(true);
-    }
+    if (!isRunning && !finished) setIsEditing(true);
   };
-  const handleMinuteChange = (e) => {
-    setEditMinutes(e.target.value);
-  };
+  const handleMinuteChange = (e) => setEditMinutes(e.target.value);
   const handleSecondChange = (e) => {
-    let value = parseInt(e.target.value, 10);
-    if (isNaN(value) || value < 0) value = 0;
-    if (value > 59) value = value % 60;
-    setEditSeconds(String(value).padStart(2, "0"));
+    let v = parseInt(e.target.value, 10);
+    if (isNaN(v) || v < 0) v = 0;
+    if (v > 59) v = v % 60;
+    setEditSeconds(String(v).padStart(2, "0"));
   };
   const handleInputKeyDown = (e) => {
     if (e.key === "Enter") {
-      const newMinutes = parseInt(editMinutes, 10) || 0;
-      const newSecondsValue = parseInt(editSeconds, 10) || 0;
-      const totalSeconds = newMinutes * 60 + newSecondsValue;
-
-      if (totalSeconds > 0) {
-        setInitialTime(totalSeconds);
-        setSecondsLeft(totalSeconds);
+      const m = parseInt(editMinutes, 10) || 0;
+      const s = parseInt(editSeconds, 10) || 0;
+      const total = m * 60 + s;
+      if (total > 0) {
+        setInitialTime(total);
+        setSecondsLeft(total);
         setIsEditing(false);
+        elapsedRef.current = 0;
+        setFinished(false);
+        completedRef.current = false;
       }
     }
   };
-  const viewedTime = () => {
-    // 타이머 시간 형식
-    const isMinus = secondsLeft < 0;
-    const absSeconds = Math.abs(secondsLeft);
-    const minutes = Math.floor(absSeconds / 60);
-    const seconds = absSeconds % 60;
-    const viewedSeconds = seconds < 10 ? `0${seconds}` : seconds;
-    return `${isMinus ? "-" : ""} ${minutes}:${viewedSeconds}`;
-  };
   const handleInputBlur = () => {
-    // 영역에서 벗어나면 입력모드 취소
     setIsEditing(false);
     setEditMinutes(String(Math.floor(initialTime / 60)));
     setEditSeconds(String(initialTime % 60).padStart(2, "0"));
   };
 
   const handleStart = () => {
-    // 타이머 시작
+    if (finished) return;
     setIsRunning(true);
     setPauseToast(false);
     setFinishToast(false);
@@ -78,30 +89,42 @@ export function Timer() {
   const handlePause = () => {
     setIsRunning(false);
     setPauseToast(true);
-    // 타이머 정지
   };
   const handleStop = () => {
-    //집중 완료
+    // 조기 중지/완료 후 초기화
     setIsRunning(false);
-    setFinishToast(true);
+    clearInterval(tickRef.current);
     setSecondsLeft(initialTime);
     setTimerStart(false);
+    setPauseToast(false);
+    setFinishToast(false);
+    setFinished(false);
+    elapsedRef.current = 0;
+    completedRef.current = false;
   };
   const handleReset = () => {
     setIsRunning(false);
+    clearInterval(tickRef.current);
     setSecondsLeft(initialTime);
     setPauseToast(false);
     setTimerStart(false);
-    //타이머 초기화
+    setFinished(false);
+    elapsedRef.current = 0;
+    completedRef.current = false;
   };
-  const calPoint = 3 + parseInt(initialTime / 10);
 
-  const isMinus = secondsLeft < 0;
+  const viewedTime = () => {
+    const m = Math.floor(secondsLeft / 60);
+    const s = String(secondsLeft % 60).padStart(2, "0");
+    return `${m}:${s}`;
+  };
+
   return (
     <div className={Style.wrapper}>
       <div className={Style.focus}>
         <p className={Style.timerTitle}>오늘의 집중</p>
       </div>
+
       <div className={Style.timer}>
         <div className={Style.stopWatch}>
           {isEditing ? (
@@ -127,14 +150,15 @@ export function Timer() {
           ) : (
             <div
               onClick={handleDisplayClick}
-              className={`${Style.timeDisplay} ${isRunning ? Style.running : ""} ${isMinus ? Style.timeMinus : ""}`}
+              className={`${Style.timeDisplay} ${isRunning ? Style.running : ""} ${finished ? Style.timeMinus : ""}`}
             >
               {viewedTime()}
             </div>
           )}
         </div>
+
         <div className={Style.buttonWrapper}>
-          {timerStart && !isMinus ? ( // 동작 안하거나 집중 완료시 버튼 안보이게
+          {timerStart && !finished ? (
             <button
               type="button"
               className={Style.pauseButton}
@@ -146,7 +170,7 @@ export function Timer() {
             <div className={Style.blank}></div>
           )}
 
-          {isMinus ? ( // 시간 초과시
+          {finished ? (
             <button type="button" className={Style.button} onClick={handleStop}>
               <img src={StopIcon} alt="정지" />
               <p>Stop!</p>
@@ -163,7 +187,7 @@ export function Timer() {
             </button>
           )}
 
-          {timerStart && !isMinus ? (
+          {timerStart && !finished ? (
             <button
               type="button"
               className={Style.resetButton}
@@ -176,6 +200,7 @@ export function Timer() {
           )}
         </div>
       </div>
+
       {pauseToast && (
         <div className={Style.pauseMessage}>
           <p>🚨 집중이 중단되었습니다</p>
@@ -183,9 +208,11 @@ export function Timer() {
       )}
       {finishToast && (
         <div className={Style.finishMessage}>
-          <p>🎉 {calPoint} 포인트를 획득했습니다!</p>
+          <p>🎉 집중 완료! {rewardPoint}P 지급</p>
         </div>
       )}
     </div>
   );
 }
+
+export default Timer;
